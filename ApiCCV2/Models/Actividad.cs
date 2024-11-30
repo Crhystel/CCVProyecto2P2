@@ -11,5 +11,5 @@
         public ICollection<ActividadEstudiante> ActividadEstudiantes { get; set; }
         public ICollection<ActividadProfesor> ActividadProfesores { get; set; }
     }
-}
+
 }
