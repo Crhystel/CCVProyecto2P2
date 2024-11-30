@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CCVProyecto2P2.Views.IndexView"
+             Title="IndexView">
+    <ScrollView Background="#e6e2dc">
+        <VerticalStackLayout>
+            <Image Source="escuela.jpg"
+               Aspect="AspectFill"
+               HeightRequest="200"
+               Margin="0,10,0,10" />
+            <Label Text="Escuelita Gotitas del Saber"
+               FontSize="40"
+               FontAttributes="Bold"
+               FontFamily="TheStudentsTeacherFont"
+               HorizontalTextAlignment="Center"
+               TextColor="#444444"
+               Margin="0,10" />
+            <Label Text="Bienvenidos"
+               FontFamily="TheStudentsTeacherFont"
+               FontSize="18"
+               HorizontalTextAlignment="Center"
+               TextColor="#444444"
+               Margin="0,5,0,20" />
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0" Grid.Column="0"
+                   CornerRadius="10"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                    <VerticalStackLayout>
+                        <Image Source="administrador.jpg" Aspect="AspectFit" HeightRequest="100" />
+                        <Label Text="Administrador" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont"/>
+                        <Button Text ="Ingresar" Clicked="Administrador_Clicked" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"></Button>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Row="0" Grid.Column="1"
+                   CornerRadius="10"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                    <VerticalStackLayout>
+                        <Image Source="profesor.jpg" Aspect="AspectFit" HeightRequest="100" />
+                        <Label Text="Profesor" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
+                        <Button Text ="Ingresar" Clicked="Profesor_Clicked" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"></Button>
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Row="1" Grid.Column="0"
+                   CornerRadius="10"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                    <VerticalStackLayout>
+                        <Image Source="estudiante.jpg" Aspect="AspectFit" HeightRequest="100" />
+                        <Label Text="Estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
+                        <Button Text ="Ingresar" Clicked="Estudiante_Clicked" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"></Button>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

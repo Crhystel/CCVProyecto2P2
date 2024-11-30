@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CCVProyecto2P2.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CCVProyecto2P2"
+    Shell.FlyoutBehavior="Disabled"
+    Title="CCVProyecto2P2">
+
+    <FlyoutItem Title="Inicio">
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:InicioView}"
+        Route="InicioView" />
+    </FlyoutItem>
+    <FlyoutItem Title="Ingreso">
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:IndexView}"
+        Route="IndexView" />
+    </FlyoutItem>
+    <FlyoutItem Title="Soporte">
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:SoporteView}"
+        Route="SoporteView" />
+    </FlyoutItem>
+
+</Shell>
