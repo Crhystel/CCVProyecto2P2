@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiCCV2.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241130233906_Migracion1")]
+    [Migration("20241201043059_Migracion1")]
     partial class Migracion1
     {
         /// <inheritdoc />
@@ -250,6 +250,19 @@ namespace ApiCCV2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Estudiantes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Cedula = "0111111111",
+                            Contrasenia = "crhys",
+                            Edad = 19,
+                            Grado = 2,
+                            Nombre = "Crhystel",
+                            NombreUsuario = "crhys",
+                            Rol = 1
+                        });
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.Grado", b =>
@@ -265,6 +278,21 @@ namespace ApiCCV2.Migrations
                     b.ToTable("Grados");
                 });
 
+            modelBuilder.Entity("ApiCCV2.Models.GradoEstudiante", b =>
+                {
+                    b.Property<int>("EstudianteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GradoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EstudianteId", "GradoId");
+
+                    b.HasIndex("GradoId");
+
+                    b.ToTable("GradoEstudiantes");
+                });
+
             modelBuilder.Entity("ApiCCV2.Models.Materia", b =>
                 {
                     b.Property<int>("Id")
@@ -276,6 +304,21 @@ namespace ApiCCV2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Materias");
+                });
+
+            modelBuilder.Entity("ApiCCV2.Models.MateriaProfesor", b =>
+                {
+                    b.Property<int>("ProfesorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MateriaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProfesorId", "MateriaId");
+
+                    b.HasIndex("MateriaId");
+
+                    b.ToTable("MateriaProfesores");
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.Profesor", b =>
@@ -299,7 +342,10 @@ namespace ApiCCV2.Migrations
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
-                    b.Property<int>("MateriasId")
+                    b.Property<int>("MateriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Materias")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
@@ -317,9 +363,21 @@ namespace ApiCCV2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MateriasId");
-
                     b.ToTable("Profesores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Cedula = "0111111122",
+                            Contrasenia = "yuli",
+                            Edad = 19,
+                            MateriaId = 0,
+                            Materias = 4,
+                            Nombre = "Yuliana",
+                            NombreUsuario = "yuli",
+                            Rol = 2
+                        });
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.ActividadEstudiante", b =>
@@ -436,15 +494,42 @@ namespace ApiCCV2.Migrations
                     b.Navigation("Profesor");
                 });
 
-            modelBuilder.Entity("ApiCCV2.Models.Profesor", b =>
+            modelBuilder.Entity("ApiCCV2.Models.GradoEstudiante", b =>
                 {
-                    b.HasOne("ApiCCV2.Models.Materia", "Materias")
-                        .WithMany()
-                        .HasForeignKey("MateriasId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("ApiCCV2.Models.Grado", "Grado")
+                        .WithMany("GradoEstudiantes")
+                        .HasForeignKey("EstudianteId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Materias");
+                    b.HasOne("ApiCCV2.Models.Estudiante", "Estudiante")
+                        .WithMany("GradoEstudiantes")
+                        .HasForeignKey("GradoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Estudiante");
+
+                    b.Navigation("Grado");
+                });
+
+            modelBuilder.Entity("ApiCCV2.Models.MateriaProfesor", b =>
+                {
+                    b.HasOne("ApiCCV2.Models.Profesor", "Profesor")
+                        .WithMany("MateriaProfesores")
+                        .HasForeignKey("MateriaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ApiCCV2.Models.Materia", "Materia")
+                        .WithMany("MateriaProfesores")
+                        .HasForeignKey("ProfesorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Materia");
+
+                    b.Navigation("Profesor");
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.Actividad", b =>
@@ -470,6 +555,18 @@ namespace ApiCCV2.Migrations
                     b.Navigation("ActividadEstudiantes");
 
                     b.Navigation("ClaseEstudiantes");
+
+                    b.Navigation("GradoEstudiantes");
+                });
+
+            modelBuilder.Entity("ApiCCV2.Models.Grado", b =>
+                {
+                    b.Navigation("GradoEstudiantes");
+                });
+
+            modelBuilder.Entity("ApiCCV2.Models.Materia", b =>
+                {
+                    b.Navigation("MateriaProfesores");
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.Profesor", b =>
@@ -477,6 +574,8 @@ namespace ApiCCV2.Migrations
                     b.Navigation("ActividadProfesores");
 
                     b.Navigation("ClaseProfesores");
+
+                    b.Navigation("MateriaProfesores");
                 });
 #pragma warning restore 612, 618
         }

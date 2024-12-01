@@ -89,6 +89,26 @@ namespace ApiCCV2.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Profesores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MateriaId = table.Column<int>(type: "int", nullable: false),
+                    Materias = table.Column<int>(type: "int", nullable: false),
+                    Cedula = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Contrasenia = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Edad = table.Column<int>(type: "int", nullable: false),
+                    Rol = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Profesores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ActividadEstudiantes",
                 columns: table => new
                 {
@@ -108,6 +128,30 @@ namespace ApiCCV2.Migrations
                         name: "FK_ActividadEstudiantes_Estudiantes_EstudianteId",
                         column: x => x.EstudianteId,
                         principalTable: "Estudiantes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GradoEstudiantes",
+                columns: table => new
+                {
+                    GradoId = table.Column<int>(type: "int", nullable: false),
+                    EstudianteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GradoEstudiantes", x => new { x.EstudianteId, x.GradoId });
+                    table.ForeignKey(
+                        name: "FK_GradoEstudiantes_Estudiantes_GradoId",
+                        column: x => x.GradoId,
+                        principalTable: "Estudiantes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_GradoEstudiantes_Grados_EstudianteId",
+                        column: x => x.EstudianteId,
+                        principalTable: "Grados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -139,28 +183,51 @@ namespace ApiCCV2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Profesores",
+                name: "ActividadProfesores",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MateriasId = table.Column<int>(type: "int", nullable: false),
-                    Cedula = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Contrasenia = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Edad = table.Column<int>(type: "int", nullable: false),
-                    Rol = table.Column<int>(type: "int", nullable: false)
+                    ProfesorId = table.Column<int>(type: "int", nullable: false),
+                    ActividadId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Profesores", x => x.Id);
+                    table.PrimaryKey("PK_ActividadProfesores", x => new { x.ActividadId, x.ProfesorId });
                     table.ForeignKey(
-                        name: "FK_Profesores_Materias_MateriasId",
-                        column: x => x.MateriasId,
-                        principalTable: "Materias",
+                        name: "FK_ActividadProfesores_Actividades_ActividadId",
+                        column: x => x.ActividadId,
+                        principalTable: "Actividades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ActividadProfesores_Profesores_ProfesorId",
+                        column: x => x.ProfesorId,
+                        principalTable: "Profesores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MateriaProfesores",
+                columns: table => new
+                {
+                    ProfesorId = table.Column<int>(type: "int", nullable: false),
+                    MateriaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MateriaProfesores", x => new { x.ProfesorId, x.MateriaId });
+                    table.ForeignKey(
+                        name: "FK_MateriaProfesores_Materias_ProfesorId",
+                        column: x => x.ProfesorId,
+                        principalTable: "Materias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MateriaProfesores_Profesores_MateriaId",
+                        column: x => x.MateriaId,
+                        principalTable: "Profesores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,30 +281,6 @@ namespace ApiCCV2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActividadProfesores",
-                columns: table => new
-                {
-                    ProfesorId = table.Column<int>(type: "int", nullable: false),
-                    ActividadId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ActividadProfesores", x => new { x.ActividadId, x.ProfesorId });
-                    table.ForeignKey(
-                        name: "FK_ActividadProfesores_Actividades_ActividadId",
-                        column: x => x.ActividadId,
-                        principalTable: "Actividades",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ActividadProfesores_Profesores_ProfesorId",
-                        column: x => x.ProfesorId,
-                        principalTable: "Profesores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ClaseProfesores",
                 columns: table => new
                 {
@@ -266,6 +309,16 @@ namespace ApiCCV2.Migrations
                 table: "Administrador",
                 columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Nombre", "NombreUsuario", "Rol" },
                 values: new object[] { 1, "1234567890", "admin", 30, "Roberto", "admin", 0 });
+
+            migrationBuilder.InsertData(
+                table: "Estudiantes",
+                columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Grado", "Nombre", "NombreUsuario", "Rol" },
+                values: new object[] { 1, "0111111111", "crhys", 19, 2, "Crhystel", "crhys", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Profesores",
+                columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "MateriaId", "Materias", "Nombre", "NombreUsuario", "Rol" },
+                values: new object[] { 1, "0111111122", "yuli", 19, 0, 4, "Yuliana", "yuli", 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActividadEstudiantes_EstudianteId",
@@ -303,9 +356,14 @@ namespace ApiCCV2.Migrations
                 column: "MateriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Profesores_MateriasId",
-                table: "Profesores",
-                column: "MateriasId");
+                name: "IX_GradoEstudiantes_GradoId",
+                table: "GradoEstudiantes",
+                column: "GradoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MateriaProfesores_MateriaId",
+                table: "MateriaProfesores",
+                column: "MateriaId");
         }
 
         /// <inheritdoc />
@@ -330,13 +388,19 @@ namespace ApiCCV2.Migrations
                 name: "ClaseProfesores");
 
             migrationBuilder.DropTable(
+                name: "GradoEstudiantes");
+
+            migrationBuilder.DropTable(
+                name: "MateriaProfesores");
+
+            migrationBuilder.DropTable(
                 name: "Actividades");
 
             migrationBuilder.DropTable(
-                name: "Estudiantes");
+                name: "Clases");
 
             migrationBuilder.DropTable(
-                name: "Clases");
+                name: "Estudiantes");
 
             migrationBuilder.DropTable(
                 name: "Profesores");
