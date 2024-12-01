@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CCVProyecto2P2.ViewsProfesor.CrearActividadView"
+             Title="CrearActividadView">
+    <ScrollView Background="#e6e2dc">
+        <VerticalStackLayout>
+            <Label Text="ACTIVIDAD"
+         FontSize="40"
+         FontAttributes="Bold"
+         FontFamily="TheStudentsTeacherFont"
+         HorizontalTextAlignment="Center"
+         TextColor="#444444"
+         Margin="0,10" />
+            <Label Text="NOMBRE ACTIVIDAD"
+                FontFamily="TheStudentsTeacherFont"
+                FontSize="20"
+                HorizontalTextAlignment="Start"
+                TextColor="#444444"
+                Margin="4,5,10,20" />
+            <Editor x:Name="editorNombre"
+                 BackgroundColor="White"
+                 
+                 />
+            <!-- Para funcionalidad:
+         <TextChanged="OnEditorTextChanged"
+         Completed="OnEditorCompleted" -->
+            <Label Text=""></Label>
+            <Label Text="DESCRIPCION"
+         FontFamily="TheStudentsTeacherFont"
+         FontSize="20"
+         HorizontalTextAlignment="Start"
+         TextColor="#444444"
+         Margin="4,5,10,20" />
+            <Editor x:Name="editorDescripción"
+                 BackgroundColor="White"
+                 HeightRequest="200" />
+            <!-- Para funcionalidad:
+         <TextChanged="OnEditorTextChanged"
+         Completed="OnEditorCompleted" -->
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Fecha de Inicio"
+                FontFamily="TheStudentsTeacherFont"
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                TextColor="#444444"
+                Margin="0,5,0,20" />
+                    <DatePicker x:Name="FechaInicio"
+                     Format="D"
+                     MinimumDate="2000-01-01"
+                     MaximumDate="2100-12-31"
+                     BackgroundColor="Black"
+                     HorizontalOptions="Center"
+                     />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Fecha de Entrega"
+                        FontFamily="TheStudentsTeacherFont"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        TextColor="#444444"
+                        Margin="0,5,0,20" />
+
+                    <DatePicker x:Name="FechaEntrega"
+                             Format="D"
+                             MinimumDate="2000-01-01"
+                             MaximumDate="2100-12-31"
+                             BackgroundColor="Black"
+                             HorizontalOptions="Center"
+                     />
+                </VerticalStackLayout>
+
+            </Grid>
+            <Button Text="AGREGAR ARCHIVO" BackgroundColor="Black" TextColor="White">
+            </Button>
+            <Label Text=""> </Label>
+            <Button Text="Guardar" BackgroundColor="Black" TextColor="White">
+            </Button>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

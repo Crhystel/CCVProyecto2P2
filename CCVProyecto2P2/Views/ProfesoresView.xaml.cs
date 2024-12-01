@@ -1,3 +1,5 @@
+using CCVProyecto2P2.ViewsProfesor;
+
 namespace CCVProyecto2P2.Views;
 
 public partial class ProfesoresView : ContentPage
@@ -6,4 +8,8 @@ public partial class ProfesoresView : ContentPage
 	{
 		InitializeComponent();
 	}
+    public void CrearActividad_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new CrearActividadView());
+    }
 }

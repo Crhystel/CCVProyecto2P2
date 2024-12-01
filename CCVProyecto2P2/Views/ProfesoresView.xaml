@@ -3,10 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.Views.ProfesoresView"
              Title="ProfesoresView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUiI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Background="#e6e2dc">
+        <!--  <ListView ItemsSource="Aqui le hacen binding a los cursos "
+                  ItemSelected="OnItemSelected"> 
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="1"
+                           Text="Binding"
+                           FontAttributes="Bold" />
+                            <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="Binding"
+                           FontAttributes="Italic"
+                           VerticalOptions="End" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+        <Button Text="Actividades" Clicked="CrearActividad_Clicked" BackgroundColor="Black" TextColor="White"></Button>
     </VerticalStackLayout>
 </ContentPage>
