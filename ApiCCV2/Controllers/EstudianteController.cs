@@ -23,5 +23,18 @@ namespace ApiCCV2.Controllers
             return Ok(estudiantes);
 
         }
+        [HttpGet("{eId}")]
+        [ProducesResponseType(200, Type=typeof(Estudiante))]
+        [ProducesResponseType(400)]
+        public IActionResult GetEstudiante(int eId)
+        {
+            if (!_estudiante.EstudianteExiste(eId))
+                return NotFound();
+            var estudiante = _estudiante.GetEstudiante(eId);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            return Ok(estudiante);
+        }
+        
     }
 }
