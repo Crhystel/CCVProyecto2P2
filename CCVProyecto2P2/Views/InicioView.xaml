@@ -3,34 +3,27 @@
              x:Class="CCVProyecto2P2.Views.InicioView"
                      BackgroundColor="#e6e2dc">
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <!-- Usamos un Grid para centrar todo -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
         <VerticalStackLayout Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
-           
             <Label Text="Gotitas del Saber"
                    FontSize="28"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"
                    TextColor="#333333" FontFamily="TheStudentsTeacherFont"/>
-
-
             <Image Source="books.png" 
                    HeightRequest="150"
                    WidthRequest="300"
                    Aspect="AspectFit" 
                    HorizontalOptions="Center" />
-
             <Label Text="Formando el futuro con amor y conocimiento."
                    FontSize="16"
                    TextColor="#333333"
                    HorizontalTextAlignment="Center" FontFamily="TheStudentsTeacherFont"/>
-
             <Button Text="Ingresar"
                     BackgroundColor="#333333"
                     TextColor="#FFFFFF"
