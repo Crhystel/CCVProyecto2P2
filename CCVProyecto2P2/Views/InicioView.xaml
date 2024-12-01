@@ -4,7 +4,7 @@
              Title="InicioView">
     <ScrollView Background="#e6e2dc">
         <VerticalStackLayout>
-            <Image Source="escuela.jpg"
+            <Image Source="instalaciones.jpg"
                    Aspect="AspectFill"
                    HeightRequest="200"
                    Margin="0,10,0,10" />
@@ -32,45 +32,32 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
-                <Frame Grid.Row="0" Grid.Column="0"
-                       CornerRadius="10"
-                       Padding="10"
-                       BackgroundColor="#ffffff"
-                       HasShadow="True">
-                    <VerticalStackLayout>
-                        <Label Text="Sobre Nosotros"
-                               FontSize="15"
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                    <Label Text="Sobre Nosotros"
+                               FontSize="20"
                                FontAttributes="Bold"
                                FontFamily="TheStudentsTeacherFont"
                                HorizontalTextAlignment="Center"
                                TextColor="#444444" />
-                        <Label Text="En Gotitas del Saber, creemos que cada niño es una gota que forma el océano del conocimiento y el futuro. Nuestra escuela, fundada con el propósito de inspirar el aprendizaje desde los primeros años, combina un enfoque educativo innovador con valores fundamentales que preparan a los estudiantes para una vida de éxito y empatía.
-                        Nuestro equipo de profesionales altamente capacitados trabaja en un ambiente seguro, inclusivo y estimulante, donde cada estudiante es valorado por su individualidad y potencial único. Fomentamos la curiosidad, la creatividad y el pensamiento crítico a través de métodos pedagógicos modernos y actividades prácticas que enriquecen su desarrollo integral.
-                        Con programas educativos diseñados para cada etapa del aprendizaje, en Gotitas del Saber promovemos la excelencia académica y el bienestar emocional, asegurándonos de que nuestros estudiantes no solo aprendan, sino que también crezcan como seres humanos íntegros.
-                        Unimos a familias, docentes y comunidad para sembrar semillas de conocimiento que florecerán en un futuro brillante. En Gotitas del Saber, juntos construimos el mañana, gota a gota."  
-                               LineBreakMode="WordWrap"
-                               FontFamily="TheStudentsTeacherFont"
-                               FontSize="10"
-                               HorizontalTextAlignment="Center"
-                               TextColor="#444444" />
-                    </VerticalStackLayout>
-                </Frame>
-                <Frame Grid.Row="0" Grid.Column="1"
-                       CornerRadius="10"
-                       Padding="10"
-                       BackgroundColor="#ffffff"
-                       HasShadow="True">
-                    <VerticalStackLayout>
-                        <Label Text="Otra sección"
+                    <Label Text="En Gotitas del Saber, creemos que cada niño es una gota que forma el océano del conocimiento y el futuro."
+                    FontFamily="TheStudentsTeacherFont"
                                FontSize="15"
-                               FontAttributes="Bold"
-                               FontFamily="TheStudentsTeacherFont"
                                HorizontalTextAlignment="Center"
-                               TextColor="#444444" />
-                    </VerticalStackLayout>
-                </Frame>
+                               TextColor="#444444"         
+                           />
+                    <Label Text="Nuestro equipo de profesionales altamente capacitados trabaja en un ambiente seguro, inclusivo y estimulante, donde cada estudiante es valorado por su individualidad y potencial único."
+                           FontFamily="TheStudentsTeacherFont"
+                           FontSize="15"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#444444"         
+                           />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                    <Image Source="inicio.jpg" MaximumHeightRequest="900" MaximumWidthRequest="900"/>
+                </VerticalStackLayout>
             </Grid>
+            <Button Text="INGRESAR" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont" WidthRequest="200"/>
+            <Label Text=""/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

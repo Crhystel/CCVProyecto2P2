@@ -13,12 +13,6 @@
         ContentTemplate="{DataTemplate local:InicioView}"
         Route="InicioView" />
     </FlyoutItem>
-    <FlyoutItem Title="Ingreso">
-        <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:IndexView}"
-        Route="IndexView" />
-    </FlyoutItem>
     <FlyoutItem Title="Soporte">
         <ShellContent
         Title="Home"
