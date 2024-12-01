@@ -99,6 +99,16 @@ namespace ApiCCV2.Data
                 Edad = 30,
                 Rol = RolEnum.Administrador,
             });
+            modelBuilder.Entity<Estudiante>().HasData(new Estudiante
+            {
+                Id = 1,
+                Cedula = "0111111111",
+                Nombre = "Crhystel",
+                NombreUsuario = "crhys",
+                Contrasenia = "crhys",
+                Edad = 19,
+                Rol = RolEnum.Estudiante,
+            });
         }
     }
 }
