@@ -28,5 +28,17 @@ namespace ApiCCV2.Controllers
             return Ok(profesores);
 
         }
+        [HttpGet("{pId}")]
+        [ProducesResponseType(200, Type = typeof(Profesor))]
+        [ProducesResponseType(400)]
+        public IActionResult GetEstudiante(int pId)
+        {
+            if (!_profesor.ProfesorExiste(pId))
+                return NotFound();
+            var profesor = _mapper.Map<ProfesorDto>(_profesor.GetProfesor(pId));
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            return Ok(profesor);
+        }
     }
 }
