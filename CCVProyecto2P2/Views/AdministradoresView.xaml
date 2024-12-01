@@ -28,7 +28,8 @@
                     <VerticalStackLayout>
                         <Image Source="profesor2.jpg" Aspect="AspectFit" HeightRequest="100" />
                         <Label Text="Agregar Profesor" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont"/>
-                        <Button Text ="Ingresar" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"></Button>
+                        <Button Text ="Ingresar" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont" 
+                        Clicked="CrearProfesor_Clicked"></Button>
                     </VerticalStackLayout>
                 </Frame>
                 <Frame Grid.Row="0" Grid.Column="1"
@@ -38,7 +39,8 @@
                     <VerticalStackLayout>
                         <Image Source="estudiante2.png" Aspect="AspectFit" HeightRequest="100" />
                         <Label Text="Agregar Estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
-                        <Button Text ="Ingresar" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"></Button>
+                        <Button Text ="Ingresar" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"
+                         Clicked="CrearEstudiante_Clicked"></Button>
                     </VerticalStackLayout>
                 </Frame>
                 <Frame Grid.Row="1" Grid.Column="0"
@@ -48,7 +50,8 @@
                     <VerticalStackLayout>
                         <Image Source="curso.jpeg" Aspect="AspectFit" HeightRequest="100" />
                         <Label Text="Agregar Estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
-                        <Button Text ="Ingresar"  BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"></Button>
+                        <Button Text ="Ingresar"  BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"
+                                Clicked="CrearCurso_Clicked"></Button>
                     </VerticalStackLayout>
                 </Frame>
                 <Frame Grid.Row="1" Grid.Column="1"
@@ -58,7 +61,8 @@
                     <VerticalStackLayout>
                         <Image Source="curso2.jpg" Aspect="AspectFit" HeightRequest="100" />
                         <Label Text="Unir estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
-                        <Button Text ="Ingresar"  BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"></Button>
+                        <Button Text ="Ingresar"  BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"
+                                Clicked="UnirEstudiante_Clicked"></Button>
                     </VerticalStackLayout>
                 </Frame>
             </Grid>

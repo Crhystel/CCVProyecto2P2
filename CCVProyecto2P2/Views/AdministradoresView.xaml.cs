@@ -1,3 +1,5 @@
+using CCVProyecto2P2.ViewsAdmin;
+
 namespace CCVProyecto2P2.Views;
 
 public partial class AdministradoresView : ContentPage
@@ -6,4 +8,20 @@ public partial class AdministradoresView : ContentPage
 	{
 		InitializeComponent();
 	}
+    public void CrearProfesor_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AgregarProfesorView());
+    }
+    public void CrearEstudiante_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AgregarProfesorView());
+    }
+    public void CrearCurso_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AgregarProfesorView());
+    }
+    public void UnirEstudiante_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AgregarProfesorView());
+    }
 }

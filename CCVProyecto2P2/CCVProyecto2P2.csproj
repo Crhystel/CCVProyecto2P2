@@ -69,6 +69,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="ViewsAdmin\AgregarEstudianteView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewsAdmin\AgregarProfesorView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewsAdmin\CrearCursoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewsAdmin\UnirEstudianteView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AdministradoresView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
