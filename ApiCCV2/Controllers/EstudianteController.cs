@@ -1,5 +1,7 @@
-﻿using ApiCCV2.Interfaces;
+﻿using ApiCCV2.Dto;
+using ApiCCV2.Interfaces;
 using ApiCCV2.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiCCV2.Controllers
@@ -9,15 +11,18 @@ namespace ApiCCV2.Controllers
     public class EstudiantesController : Controller
     {
         private readonly IEstudiante _estudiante;
-        public EstudiantesController(IEstudiante estudiante)
+        private readonly IMapper _mapper;
+        //Inyeccion de dependencias
+        public EstudiantesController(IEstudiante estudiante, IMapper mapper)
         {
             _estudiante = estudiante;
+            _mapper = mapper;
         }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Estudiante>))]
         public IActionResult GetEstudiantes()
         {
-            var estudiantes = _estudiante.GetEstudiantes();
+            var estudiantes = _mapper.Map<List<EstudianteDto>>(_estudiante.GetEstudiantes());
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(estudiantes);
@@ -30,7 +35,7 @@ namespace ApiCCV2.Controllers
         {
             if (!_estudiante.EstudianteExiste(eId))
                 return NotFound();
-            var estudiante = _estudiante.GetEstudiante(eId);
+            var estudiante = _mapper.Map<EstudianteDto>(_estudiante.GetEstudiante(eId));
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(estudiante);
