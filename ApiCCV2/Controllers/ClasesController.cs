@@ -25,7 +25,7 @@ namespace ApiCCV2.Controllers
                 return BadRequest(ModelState);
             return Ok(clases);
         }
-        [HttpGet("{cId}")]
+        [HttpGet("{PorId}")]
         [ProducesResponseType(200, Type = typeof(Clase))]
         [ProducesResponseType(400)]
         public IActionResult GetClase(int cId)

@@ -28,7 +28,7 @@ namespace ApiCCV2.Controllers
             return Ok(estudiantes);
 
         }
-        [HttpGet("{eId}")]
+        [HttpGet("{PorId}")]
         [ProducesResponseType(200, Type=typeof(Estudiante))]
         [ProducesResponseType(400)]
         public IActionResult GetEstudiante(int eId)

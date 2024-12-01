@@ -26,7 +26,7 @@ namespace ApiCCV2.Controllers
                 return BadRequest(ModelState);
             return Ok(actividades);
         }
-        [HttpGet("{aId}")]
+        [HttpGet("{PorId}")]
         [ProducesResponseType(200, Type = typeof(Actividad))]
         [ProducesResponseType(400)]
         public IActionResult GetActividad(int aId)
