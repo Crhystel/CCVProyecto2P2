@@ -9,11 +9,11 @@ namespace ApiCCV2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProfesorController : Controller
+    public class ProfesoresController : Controller
     {
         private readonly IProfesor _profesor;
         private readonly IMapper _mapper;
-        public ProfesorController(IProfesor profesor, IMapper mapper)
+        public ProfesoresController(IProfesor profesor, IMapper mapper)
         {
             _profesor = profesor;
             _mapper = mapper;

@@ -22,8 +22,6 @@ namespace ApiCCV2.Repositories
             return _context.Estudiantes.Where(c => c.Id == id).FirstOrDefault();
         }
 
-        
-
 
         ICollection<Estudiante> IEstudiante.GetEstudiantes()
         {
