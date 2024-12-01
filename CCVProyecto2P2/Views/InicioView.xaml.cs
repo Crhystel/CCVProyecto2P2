@@ -6,4 +6,8 @@ public partial class InicioView : ContentPage
 	{
 		InitializeComponent();
 	}
+    public void Ingresar_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new IndexView());
+    }
 }

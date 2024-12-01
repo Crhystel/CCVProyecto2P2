@@ -1,63 +1,45 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.Views.InicioView"
-             Title="InicioView">
-    <ScrollView Background="#e6e2dc">
-        <VerticalStackLayout>
-            <Image Source="instalaciones.jpg"
-                   Aspect="AspectFill"
-                   HeightRequest="200"
-                   Margin="0,10,0,10" />
-            <Label Text="Escuelita Gotitas del Saber"
-                   FontSize="40"
-                   FontAttributes="Bold"
-                   FontFamily="TheStudentsTeacherFont"
-                   HorizontalTextAlignment="Center"
-                   TextColor="#444444"
-                   Margin="0,10" />
-            <Label Text="Bienvenidos"
-                   FontFamily="TheStudentsTeacherFont"
-                   FontSize="18"
-                   HorizontalTextAlignment="Center"
-                   TextColor="#444444"
-                   Margin="0,5,0,20" />
+                     BackgroundColor="#e6e2dc">
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!-- Usamos un Grid para centrar todo -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Grid ColumnSpacing="10" RowSpacing="10"
-                  Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <VerticalStackLayout Grid.Row="0" Grid.Column="0">
-                    <Label Text="Sobre Nosotros"
-                               FontSize="20"
-                               FontAttributes="Bold"
-                               FontFamily="TheStudentsTeacherFont"
-                               HorizontalTextAlignment="Center"
-                               TextColor="#444444" />
-                    <Label Text="En Gotitas del Saber, creemos que cada niño es una gota que forma el océano del conocimiento y el futuro."
-                    FontFamily="TheStudentsTeacherFont"
-                               FontSize="15"
-                               HorizontalTextAlignment="Center"
-                               TextColor="#444444"         
-                           />
-                    <Label Text="Nuestro equipo de profesionales altamente capacitados trabaja en un ambiente seguro, inclusivo y estimulante, donde cada estudiante es valorado por su individualidad y potencial único."
-                           FontFamily="TheStudentsTeacherFont"
-                           FontSize="15"
-                           HorizontalTextAlignment="Center"
-                           TextColor="#444444"         
-                           />
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                    <Image Source="inicio.jpg" MaximumHeightRequest="900" MaximumWidthRequest="900"/>
-                </VerticalStackLayout>
-            </Grid>
-            <Button Text="INGRESAR" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont" WidthRequest="200"/>
-            <Label Text=""/>
+        <VerticalStackLayout Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+           
+            <Label Text="Gotitas del Saber"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#333333" FontFamily="TheStudentsTeacherFont"/>
+
+
+            <Image Source="books.png" 
+                   HeightRequest="150"
+                   WidthRequest="300"
+                   Aspect="AspectFit" 
+                   HorizontalOptions="Center" />
+
+            <Label Text="Formando el futuro con amor y conocimiento."
+                   FontSize="16"
+                   TextColor="#333333"
+                   HorizontalTextAlignment="Center" FontFamily="TheStudentsTeacherFont"/>
+
+            <Button Text="Ingresar"
+                    BackgroundColor="#333333"
+                    TextColor="#FFFFFF"
+                    FontSize="18"
+                    HeightRequest="50"
+                    WidthRequest="200"
+                    CornerRadius="25"
+                    HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont"
+                    Clicked="Ingresar_Clicked"/>
         </VerticalStackLayout>
-    </ScrollView>
+    </Grid>
 </ContentPage>
