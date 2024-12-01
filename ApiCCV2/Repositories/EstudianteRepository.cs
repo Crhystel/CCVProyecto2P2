@@ -11,10 +11,22 @@ namespace ApiCCV2.Repositories
         {
             _context = context;
         }
-        //public ICollection<Estudiante> GetEstudiantes()
-        //{
-        //    return _context.Estudiantes.OrderBy(c => c.Id).ToList();
-        //}
+
+        public bool EstudianteExiste(int id)
+        {
+            return _context.Estudiantes.Any(c=>c.Id== id);
+        }
+
+        public Estudiante GetEstudiante(int id)
+        {
+            return _context.Estudiantes.Where(c => c.Id == id).FirstOrDefault();
+        }
+
+        public Estudiante GetEstudiante(string nombre)
+        {
+            return _context.Estudiantes.Where(c => c.Nombre == nombre).FirstOrDefault();
+        }
+
 
         ICollection<Estudiante> IEstudiante.GetEstudiantes()
         {
