@@ -13,6 +13,7 @@ namespace ApiCCV2.Helper
             CreateMap<Clase, ClaseDto>();
             CreateMap<Actividad, ActividadDto>();
             CreateMap<ActividadProfesor, ActividadProfesorDto>();
+            CreateMap<EstudianteDto, Estudiante>();
         }
     }
 }

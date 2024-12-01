@@ -12,6 +12,34 @@ namespace ApiCCV2.Repositories
             _context = context;
         }
 
+        public bool CreateEstudiante(int claseId, int gradoId,int actividadId, Estudiante estudiante)
+        {
+            var claseEstudiante= _context.Clases.Where(c=>c.Id ==claseId).FirstOrDefault();
+            var gradoEstudiante=_context.Grados.Where(c=>c.Id==gradoId).FirstOrDefault();
+            var actividadEstudiante = _context.Actividades.Where(c => c.Id == actividadId).FirstOrDefault();
+            var claseEstudianteNuevo = new ClaseEstudiante()
+            {
+                Clase = claseEstudiante,
+                Estudiante= estudiante,
+
+            };
+            _context.Add(claseEstudianteNuevo);
+            var gradoEstudianteNuevo = new GradoEstudiante()
+            {
+                Grado = gradoEstudiante,
+                Estudiante = estudiante,
+            };
+            _context.Add(gradoEstudianteNuevo);
+            var actividadEstudianteNuevo = new ActividadEstudiante()
+            {
+                Actividad = actividadEstudiante,
+                Estudiante = estudiante,
+            };
+            _context.Add(actividadEstudianteNuevo);
+            _context.Add(estudiante);
+            return Save();
+        }
+
         public bool EstudianteExiste(int id)
         {
             return _context.Estudiantes.Any(c=>c.Id== id);
@@ -22,6 +50,11 @@ namespace ApiCCV2.Repositories
             return _context.Estudiantes.Where(c => c.Id == id).FirstOrDefault();
         }
 
+        public bool Save()
+        {
+            var saved= _context.SaveChanges();
+            return saved > 0 ?true : false;
+        }
 
         ICollection<Estudiante> IEstudiante.GetEstudiantes()
         {

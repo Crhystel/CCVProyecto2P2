@@ -40,6 +40,30 @@ namespace ApiCCV2.Controllers
                 return BadRequest(ModelState);
             return Ok(estudiante);
         }
-        
+      [HttpPost]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    public IActionResult CrearEstudiante([FromQuery] int claseId, [FromQuery] int gradoId, [FromQuery] int actividadId, [FromBody] EstudianteDto estudianteCreate)
+        {
+            if (estudianteCreate == null)
+                return BadRequest(ModelState);
+            var estudiantes = _estudiante.GetEstudiantes()
+                .Where(c => c.Nombre  == estudianteCreate.Nombre ).FirstOrDefault();
+            if(estudiantes != null)
+            {
+                ModelState.AddModelError("", "Estudiante ya existe");
+                return StatusCode(422, ModelState);
+            }
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var estudianteMap = _mapper.Map<Estudiante>(estudianteCreate);
+            if(!_estudiante.CreateEstudiante(claseId, gradoId, actividadId,estudianteMap))
+            {
+                ModelState.AddModelError("", "Algo salio mal");
+                return StatusCode(500,ModelState);
+            }
+            return Ok("gucci");
+        }  
     }
+    
 }
