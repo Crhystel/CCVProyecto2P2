@@ -8,5 +8,6 @@ namespace ApiCCV2.Models
         public GradoEnum Grado { get; set; }
         public ICollection<ClaseEstudiante> ClaseEstudiantes { get; set; }
         public ICollection<ActividadEstudiante> ActividadEstudiantes { get; set; }
+        public ICollection<GradoEstudiante> GradoEstudiantes { get; set; }
     }
 }
