@@ -22,9 +22,22 @@ namespace ApiCCV2.Data
         public DbSet<Grado> Grados { get; set; }
         public DbSet<Administrador> Administrador { get; set; } = default!;
         public DbSet<Materia> Materias { get; set; }
+        public DbSet<MateriaProfesor> MateriaProfesores { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<MateriaProfesor>()
+                .HasKey(c => new { c.ProfesorId, c.MateriaId });
+            modelBuilder.Entity<MateriaProfesor>()
+                .HasOne(c=>c.Profesor)
+                .WithMany(c=>c.MateriaProfesores)
+                .HasForeignKey(c=>c.MateriaId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<MateriaProfesor>()
+                .HasOne(c => c.Materia)
+                .WithMany(c => c.MateriaProfesores)
+                .HasForeignKey(c => c.ProfesorId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ClaseEstudiante>()
                 .HasKey(c => new { c.EstudianteId, c.ClaseId });
