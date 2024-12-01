@@ -8,7 +8,7 @@ namespace ApiCCV2.Models
         [ForeignKey(nameof(Materia))]
         public int MateriaId { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
-        public Materia Materias { get; set; }
+        public MateriaEnum Materias { get; set; }
 
         public ICollection<ClaseProfesor> ClaseProfesores { get; set; }
         public ICollection<ActividadProfesor> ActividadProfesores { get; set; }
