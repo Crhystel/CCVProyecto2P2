@@ -31,7 +31,7 @@ namespace ApiCCV2.Controllers
         [HttpGet("{pId}")]
         [ProducesResponseType(200, Type = typeof(Profesor))]
         [ProducesResponseType(400)]
-        public IActionResult GetEstudiante(int pId)
+        public IActionResult GetProfesor(int pId)
         {
             if (!_profesor.ProfesorExiste(pId))
                 return NotFound();
@@ -40,5 +40,9 @@ namespace ApiCCV2.Controllers
                 return BadRequest(ModelState);
             return Ok(profesor);
         }
+        
+
     }
 }
+
+

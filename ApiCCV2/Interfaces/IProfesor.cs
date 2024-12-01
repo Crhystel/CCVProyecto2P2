@@ -6,7 +6,7 @@ namespace ApiCCV2.Interfaces
     {
         ICollection<Profesor> GetProfesores();
         Profesor GetProfesor(int id);
-        ICollection<Materia> GetProfesorPorMateria(int materiaId);
+       
         bool ProfesorExiste(int id);
 
     }

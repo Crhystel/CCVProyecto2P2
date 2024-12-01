@@ -136,7 +136,7 @@ namespace ApiCCV2.Data
                 Contrasenia = "crhys",
                 Edad = 19,
                 Rol = RolEnum.Estudiante,
-                Grado = GradoEnum.Tercero_Bachillerato_BGU
+                
             });
             modelBuilder.Entity<Profesor>().HasData(new Profesor
             {
@@ -147,7 +147,7 @@ namespace ApiCCV2.Data
                 Contrasenia = "yuli",
                 Edad = 19,
                 Rol = RolEnum.Profesor,
-                Materias = MateriaEnum.Ciudadania
+                
             });
         }
     }

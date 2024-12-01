@@ -6,7 +6,6 @@ namespace ApiCCV2.Interfaces
     {
         ICollection<Estudiante> GetEstudiantes();
         Estudiante GetEstudiante(int id);
-        Estudiante GetEstudiante(string nombre);
         bool EstudianteExiste(int id);    
 
     }
