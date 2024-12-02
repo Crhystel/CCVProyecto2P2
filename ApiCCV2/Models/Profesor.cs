@@ -5,9 +5,8 @@ namespace ApiCCV2.Models
 {
     public class Profesor : Usuario
     {
-       
+        public MateriaEnum Materia { get; set; }
         public ICollection<ClaseProfesor> ClaseProfesores { get; set; }
         public ICollection<ActividadProfesor> ActividadProfesores { get; set; }
-        public ICollection<MateriaProfesor>MateriaProfesores { get; set; }
     }
 }

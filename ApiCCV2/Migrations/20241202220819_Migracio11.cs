@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiCCV2.Migrations
 {
     /// <inheritdoc />
-    public partial class Migracion11 : Migration
+    public partial class Migracio11 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -63,7 +63,7 @@ namespace ApiCCV2.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Grado = table.Column<int>(type: "int", nullable: false),
+                    Grado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cedula = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -106,6 +106,7 @@ namespace ApiCCV2.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Materia = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cedula = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -252,31 +253,6 @@ namespace ApiCCV2.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "MateriaProfesores",
-                columns: table => new
-                {
-                    ProfesorId = table.Column<int>(type: "int", nullable: false),
-                    MateriaId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MateriaProfesores", x => new { x.ProfesorId, x.MateriaId });
-                    table.ForeignKey(
-                        name: "FK_MateriaProfesores_Materias_ProfesorId",
-                        column: x => x.ProfesorId,
-                        principalTable: "Materias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_MateriaProfesores_Profesores_MateriaId",
-                        column: x => x.MateriaId,
-                        principalTable: "Profesores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.InsertData(
                 table: "Administrador",
                 columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Nombre", "NombreUsuario", "Rol" },
@@ -285,12 +261,12 @@ namespace ApiCCV2.Migrations
             migrationBuilder.InsertData(
                 table: "Estudiantes",
                 columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Grado", "Nombre", "NombreUsuario", "Rol" },
-                values: new object[] { 1, "0111111111", "crhys", 19, 0, "Crhystel", "crhys", 1 });
+                values: new object[] { 1, "0111111111", "crhys", 19, "Primer_Bachillerato_BGU", "Crhystel", "crhys", 1 });
 
             migrationBuilder.InsertData(
                 table: "Profesores",
-                columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Nombre", "NombreUsuario", "Rol" },
-                values: new object[] { 1, "0111111122", "yuli", 19, "Yuliana", "yuli", 2 });
+                columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Materia", "Nombre", "NombreUsuario", "Rol" },
+                values: new object[] { 1, "0111111122", "yuli", 19, "Biologia", "Yuliana", "yuli", 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActividadEstudiantes_EstudianteId",
@@ -326,11 +302,6 @@ namespace ApiCCV2.Migrations
                 name: "IX_ClaseProfesores_EstudianteId",
                 table: "ClaseProfesores",
                 column: "EstudianteId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MateriaProfesores_MateriaId",
-                table: "MateriaProfesores",
-                column: "MateriaId");
         }
 
         /// <inheritdoc />
@@ -358,7 +329,7 @@ namespace ApiCCV2.Migrations
                 name: "Grados");
 
             migrationBuilder.DropTable(
-                name: "MateriaProfesores");
+                name: "Materias");
 
             migrationBuilder.DropTable(
                 name: "Actividades");
@@ -368,9 +339,6 @@ namespace ApiCCV2.Migrations
 
             migrationBuilder.DropTable(
                 name: "Estudiantes");
-
-            migrationBuilder.DropTable(
-                name: "Materias");
 
             migrationBuilder.DropTable(
                 name: "Profesores");

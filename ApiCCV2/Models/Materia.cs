@@ -13,6 +13,5 @@
     public class Materia
     {
         public int Id { get; set; }
-        public ICollection<MateriaProfesor> MateriaProfesores { get; set; }
     }
 }

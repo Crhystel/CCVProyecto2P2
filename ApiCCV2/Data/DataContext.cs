@@ -22,26 +22,12 @@ namespace ApiCCV2.Data
         public DbSet<Grado> Grados { get; set; }
         public DbSet<Administrador> Administrador { get; set; } = default!;
         public DbSet<Materia> Materias { get; set; }
-        public DbSet<MateriaProfesor> MateriaProfesores { get; set; }
+        
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             
-
-
-            modelBuilder.Entity<MateriaProfesor>()
-                .HasKey(c => new { c.ProfesorId, c.MateriaId });
-            modelBuilder.Entity<MateriaProfesor>()
-                .HasOne(c=>c.Profesor)
-                .WithMany(c=>c.MateriaProfesores)
-                .HasForeignKey(c=>c.MateriaId)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<MateriaProfesor>()
-                .HasOne(c => c.Materia)
-                .WithMany(c => c.MateriaProfesores)
-                .HasForeignKey(c => c.ProfesorId)
-                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ClaseProfesor>()
                 .HasKey(c => new { c.ProfesorId, c.ClasePId });
@@ -105,6 +91,12 @@ namespace ApiCCV2.Data
                 .HasOne(c => c.Actividad)
                 .WithMany(c => c.ActividadProfesores)
                 .HasForeignKey(c => c.ActividadId);
+            modelBuilder.Entity<Profesor>()
+                .Property(p => p.Materia)
+                .HasConversion<string>();
+            modelBuilder.Entity<Estudiante>()
+                .Property(p => p.Grado)
+                .HasConversion<string>();
             modelBuilder.Entity<Administrador>().HasData(new Administrador
             {
                 Id = 1,
