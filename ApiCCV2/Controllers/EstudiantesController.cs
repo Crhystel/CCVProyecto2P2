@@ -94,7 +94,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult DeleteEstudiante (int estudianteId, [FromBody] ProfesorDto estudianteUpdate)
+        public IActionResult DeleteEstudiante (int estudianteId, [FromBody] EstudianteDto estudianteUpdate)
         {
             if (!_estudiante.EstudianteExiste(estudianteId))
             {

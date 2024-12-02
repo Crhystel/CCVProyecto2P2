@@ -87,6 +87,26 @@ namespace ApiCCV2.Controllers
             }
             return NoContent();
         }
+        [HttpDelete("{profesorId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteProfesor(int profesorId, [FromBody] ProfesorDto profesorUpdate)
+        {
+            if (!_profesor.ProfesorExiste(profesorId))
+            {
+                return NotFound();
+            }
+            var profesorDelete = _profesor.GetProfesor(profesorId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            if (!_profesor.DeleteProfesor(profesorDelete))
+            {
+                ModelState.AddModelError("", "algo salio mal");
+            }
+            return NoContent();
+        }
 
 
     }
