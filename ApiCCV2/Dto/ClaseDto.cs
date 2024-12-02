@@ -7,6 +7,6 @@ namespace ApiCCV2.Dto
         public int Id { get; set; }
         public List<int> ClaseEstudiantes { get; set; }
         public List<int> ClaseProfesores { get; set; }
-        public List<int> ClaseActividades { get; set; }
+       
     }
 }

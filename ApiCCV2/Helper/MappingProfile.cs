@@ -12,7 +12,11 @@ namespace ApiCCV2.Helper
             CreateMap<EstudianteDto, Estudiante>();
             CreateMap<Profesor, ProfesorDto>();
             CreateMap<ProfesorDto, Profesor>();
-            CreateMap<ClaseDto, Clase>();
+            CreateMap<ClaseDto, Clase>()
+                .ForMember(dest => dest.ClaseEstudiantes, opt => opt.Ignore())
+                .ForMember(dest => dest.ClaseProfesores, opt => opt.Ignore())
+                .ForMember(dest => dest.ClaseActividades, opt => opt.Ignore());
+
             CreateMap<Clase, ClaseDto>();
            
             CreateMap<Actividad, ActividadDto>();

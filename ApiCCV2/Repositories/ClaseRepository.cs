@@ -18,9 +18,9 @@ namespace ApiCCV2.Repositories
 
         public bool CreateClase(int claseId, int estudiantesId, int profesoresId, Clase clase)
         {
-            var claseClase=_context.Clases.Where(c=>c.Id==claseId).FirstOrDefault();
-            var estudianteClase = _context.Estudiantes.Where(c => c.Id == estudiantesId).FirstOrDefault();
-            var profesorClase=_context.Profesores.Where(c=>c.Id == profesoresId).FirstOrDefault();
+            var claseClase=_context.Clases.SingleOrDefault(c => c.Id == claseId);
+            var estudianteClase = _context.Estudiantes.SingleOrDefault(e => e.Id == estudiantesId);
+            var profesorClase=_context.Profesores.SingleOrDefault(p => p.Id == profesoresId);
 
             var nuevoProfesorClase = new ClaseProfesor()
             {

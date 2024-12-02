@@ -29,19 +29,6 @@ namespace ApiCCV2.Data
             base.OnModelCreating(modelBuilder);
             
 
-            modelBuilder.Entity<ClaseProfesor>()
-                .HasKey(c => new { c.ProfesorId, c.ClasePId });
-            modelBuilder.Entity<ClaseProfesor>()
-                .HasOne(c => c.Profesor)
-                .WithMany(c => c.ClaseProfesores)
-                .HasForeignKey(c => c.ProfesorId)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<ClaseProfesor>()
-                .HasOne(c => c.ClaseP)
-                .WithMany(c => c.ClaseProfesores)
-                .HasForeignKey(c => c.ClasePId)
-                .OnDelete(DeleteBehavior.Restrict);
-           
 
             modelBuilder.Entity<ClaseProfesor>()
                 .HasKey(c => new { c.ProfesorId, c.ClasePId });
@@ -58,6 +45,7 @@ namespace ApiCCV2.Data
             modelBuilder.Entity<ClaseProfesor>()
                 .Property(c => c.Materia)
                 .IsRequired();
+
             modelBuilder.Entity<ClaseActividad>()
                 .HasKey(c => new { c.ActividadId, c.ClaseId });
             modelBuilder.Entity<ClaseActividad>()
