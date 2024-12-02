@@ -43,7 +43,7 @@ namespace ApiCCV2.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CrearProfesor([FromQuery] int claseId, [FromQuery] int materiaId, [FromQuery] int actividadId, [FromBody] ProfesorDto profesorCreate)
+        public IActionResult CrearProfesor( [FromQuery] int materiaId,  [FromBody] ProfesorDto profesorCreate)
         {
             if (profesorCreate == null)
                 return BadRequest(ModelState);
@@ -57,7 +57,7 @@ namespace ApiCCV2.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var profesorMap = _mapper.Map<Profesor>(profesorCreate);
-            if (!_profesor.CreateProfesor(claseId, materiaId, actividadId, profesorMap))
+            if (!_profesor.CreateProfesor(materiaId,  profesorMap))
             {
                 ModelState.AddModelError("", "Algo salio mal");
                 return StatusCode(500, ModelState);
@@ -68,7 +68,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateProfesor([FromQuery]int profesorId, [FromQuery] int materiaId, [FromQuery] int activiadId, [FromQuery] int claseId, [FromBody] ClaseDto profesorUpdate)
+        public IActionResult UpdateProfesor([FromQuery]int profesorId, [FromQuery] int materiaId,  [FromBody] ClaseDto profesorUpdate)
         {
             if (profesorUpdate == null)
                 return BadRequest(ModelState);
@@ -79,7 +79,7 @@ namespace ApiCCV2.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
             var profesorMap = _mapper.Map<Profesor>(profesorUpdate);
-            if (!_profesor.UpdateProfesor(claseId, materiaId, activiadId, profesorMap))
+            if (!_profesor.UpdateProfesor(materiaId, profesorMap))
             {
                 ModelState.AddModelError("", "Algo salió mal");
                 return StatusCode(500, ModelState);

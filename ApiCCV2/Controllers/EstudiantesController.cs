@@ -25,7 +25,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Estudiante>))]
         public IActionResult GetEstudiantes()
         {
-            var estudiantes = _mapper.Map<List<ClaseDto>>(_estudiante.GetEstudiantes());
+            var estudiantes = _mapper.Map<List<EstudianteDto>>(_estudiante.GetEstudiantes());
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(estudiantes);
@@ -38,7 +38,7 @@ namespace ApiCCV2.Controllers
         {
             if (!_estudiante.EstudianteExiste(eId))
                 return NotFound();
-            var estudiante = _mapper.Map<ClaseDto>(_estudiante.GetEstudiante(eId));
+            var estudiante = _mapper.Map<EstudianteDto>(_estudiante.GetEstudiante(eId));
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(estudiante);

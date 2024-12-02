@@ -12,30 +12,18 @@ namespace ApiCCV2.Repositories
             _context = context;
         }
 
-        public bool CreateProfesor(int claseId, int actividadId, int materiaId, Profesor profesor)
+        public bool CreateProfesor( int materiaId, Profesor profesor)
         {
-            var claseProfesor = _context.Clases.Where(c => c.Id == claseId).FirstOrDefault();
+            
             var materiaProfesor = _context.Materias.Where(c => c.Id == materiaId).FirstOrDefault();
-            var actividadProfesor = _context.Actividades.Where(c => c.Id == actividadId).FirstOrDefault();
-            var claseProfesorNuevo = new ClaseProfesor()
-            {
-                ClaseP = claseProfesor,
-                Profesor = profesor,
-
-            };
-            _context.Add(claseProfesorNuevo);
+            
             var materiaProfesorNuevo = new MateriaProfesor()
             {
                 Materia= materiaProfesor,
                 Profesor= profesor,
             };
             _context.Add(materiaProfesorNuevo);
-            var actividadProfesorNuevo = new ActividadProfesor()
-            {
-                Actividad = actividadProfesor,
-                Profesor=profesor,
-            };
-            _context.Add(actividadProfesorNuevo);
+            
             _context.Add(profesor);
             return Save();
         }
@@ -69,7 +57,7 @@ namespace ApiCCV2.Repositories
             return saved > 0 ? true : false;
         }
 
-        public bool UpdateProfesor(int claseId, int actividadId, int materiaId, Profesor profesor)
+        public bool UpdateProfesor(int materiaId, Profesor profesor)
         {
             _context.Update(profesor);
             return Save();
