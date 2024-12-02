@@ -12,11 +12,14 @@ namespace ApiCCV2.Controllers
     {
         private readonly IEstudiante _estudiante;
         private readonly IMapper _mapper;
+        private readonly IActividadEstudiante _actividadEstudiante;
         //Inyeccion de dependencias
-        public EstudiantesController(IEstudiante estudiante, IMapper mapper)
+        public EstudiantesController(IEstudiante estudiante, 
+            /*IClaseEstudiante _claseEstudiante*/IActividadEstudiante actividadEstudiante, IMapper mapper)
         {
             _estudiante = estudiante;
             _mapper = mapper;
+            _actividadEstudiante = actividadEstudiante;
         }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Estudiante>))]
@@ -63,7 +66,50 @@ namespace ApiCCV2.Controllers
                 return StatusCode(500,ModelState);
             }
             return Ok("gucci");
-        }  
+        }
+        [HttpPut("{estudianteId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateEstudiante(int estudianteId, [FromQuery] int gradoId, [FromQuery] int activiadId,[FromQuery] int claseId,[FromBody] EstudianteDto estudianteUpdate)
+        {
+            if(estudianteUpdate ==null)
+                return BadRequest(ModelState);
+            if(estudianteId!= estudianteUpdate.Id)
+                return BadRequest(ModelState);
+            if (!_estudiante.EstudianteExiste(estudianteId))
+                return NotFound();
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var estudianteMap = _mapper.Map<Estudiante>(estudianteUpdate);
+            if (!_estudiante.UpdateEstudiante(claseId,gradoId,activiadId,estudianteMap))
+            {
+                ModelState.AddModelError("", "Algo salió mal");
+                return StatusCode(500,ModelState);
+            
+            }
+            return NoContent();
+        }
+        [HttpDelete("{estudianteId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteEstudiante (int estudianteId, [FromQuery] int gradoId, [FromQuery] int actividadId, [FromQuery] int claseId, [FromBody] EstudianteDto estudianteUpdate)
+        {
+            if (!_estudiante.EstudianteExiste(estudianteId))
+            {
+                return NotFound();
+            }
+            var estudianteDelete = _estudiante.GetEstudiante(estudianteId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            if (!_estudiante.DeleteEstudiante(claseId,gradoId,actividadId,estudianteDelete))
+            {
+                ModelState.AddModelError("", "algo salio mal");
+            }
+            return NoContent();
+        }
     }
     
 }

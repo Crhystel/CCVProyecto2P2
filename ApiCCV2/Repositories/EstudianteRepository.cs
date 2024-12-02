@@ -40,6 +40,12 @@ namespace ApiCCV2.Repositories
             return Save();
         }
 
+        public bool DeleteEstudiante(int claseId, int gradoId, int actividadId, Estudiante estudiante)
+        {
+            _context.Remove(estudiante);
+            return Save();
+        }
+
         public bool EstudianteExiste(int id)
         {
             return _context.Estudiantes.Any(c=>c.Id== id);
@@ -54,6 +60,12 @@ namespace ApiCCV2.Repositories
         {
             var saved= _context.SaveChanges();
             return saved > 0 ?true : false;
+        }
+
+        public bool UpdateEstudiante(int claseId, int gradoId, int actividadId, Estudiante estudiante)
+        {
+            _context.Update(estudiante);
+            return Save();
         }
 
         ICollection<Estudiante> IEstudiante.GetEstudiantes()

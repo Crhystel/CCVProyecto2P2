@@ -6,7 +6,9 @@ namespace ApiCCV2.Interfaces
     {
         ICollection<Profesor> GetProfesores();
         Profesor GetProfesor(int id);
-       
+       bool CreateProfesor(int claseId, int actividadId, int materiaId, Profesor profesor);
+        bool UpdateProfesor(int claseId, int actividadId, int materiaId, Profesor profesor);
+        bool DeleteProfesor(int claseId, int actividadId, int materiaId, Profesor profesor);
         bool ProfesorExiste(int id);
 
     }
