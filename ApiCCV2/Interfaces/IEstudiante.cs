@@ -10,7 +10,7 @@ namespace ApiCCV2.Interfaces
         bool EstudianteExiste(int id);
         bool DeleteEstudiante( Estudiante estudiante);
         bool Save();
-        bool CreateEstudiante(int claseId, int gradoId, int actividadId, Estudiante estudiante);
-        bool UpdateEstudiante(int claseId, int gradoId, int actividadId, Estudiante estudiante);
+        bool CreateEstudiante(GradoEnum gradoId,Estudiante estudiante);
+        bool UpdateEstudiante(GradoEnum gradoId,  Estudiante estudiante);
     }
 }

@@ -8,12 +8,17 @@ namespace ApiCCV2.Helper
     {
         public MappingProfile()
         {
-            CreateMap<Estudiante, ProfesorDto>();
+            CreateMap<Estudiante, EstudianteDto>();
+            CreateMap<EstudianteDto, Estudiante>();
             CreateMap<Profesor, ProfesorDto>();
+            CreateMap<ProfesorDto, Profesor>();
             CreateMap<Clase, ClaseDto>();
+            CreateMap<ClaseDto, Clase>();
             CreateMap<Actividad, ActividadDto>();
+            CreateMap<ActividadDto, Actividad>();
             CreateMap<ActividadProfesor, ActividadProfesorDto>();
-            CreateMap<ProfesorDto, Estudiante>();
+            CreateMap<ActividadProfesorDto, ActividadProfesor>();
+            
         }
     }
 }

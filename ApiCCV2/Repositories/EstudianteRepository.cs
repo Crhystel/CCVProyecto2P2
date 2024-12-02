@@ -12,27 +12,12 @@ namespace ApiCCV2.Repositories
             _context = context;
         }
 
-        public bool CreateEstudiante(int claseId, int gradoId,int actividadId, Estudiante estudiante)
+        public bool CreateEstudiante(GradoEnum gradoId, Estudiante estudiante)
         {
-            var claseEstudiante= _context.Clases.Where(c=>c.Id ==claseId).FirstOrDefault();
-            var gradoEstudiante=_context.Grados.Where(c=>c.Id==gradoId).FirstOrDefault();
-            var actividadEstudiante = _context.Actividades.Where(c => c.Id == actividadId).FirstOrDefault();
-            var claseEstudianteNuevo = new ClaseEstudiante()
-            {
-                Clase = claseEstudiante,
-                Estudiante= estudiante,
-
-            };
-            _context.Add(claseEstudianteNuevo);
-           
-            var actividadEstudianteNuevo = new ActividadEstudiante()
-            {
-                Actividad = actividadEstudiante,
-                Estudiante = estudiante,
-            };
-            _context.Add(actividadEstudianteNuevo);
+            estudiante.Grado = gradoId;
             _context.Add(estudiante);
             return Save();
+             
         }
 
 
@@ -52,7 +37,7 @@ namespace ApiCCV2.Repositories
             return saved > 0 ?true : false;
         }
 
-        public bool UpdateEstudiante(int claseId, int gradoId, int actividadId, Estudiante estudiante)
+        public bool UpdateEstudiante( GradoEnum gradoId,Estudiante estudiante)
         {
             _context.Update(estudiante);
             return Save();

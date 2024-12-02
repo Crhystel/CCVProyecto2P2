@@ -4,8 +4,9 @@ namespace ApiCCV2.Dto
 {
     public class ClaseDto
     {
-        public ICollection<ClaseProfesor> ClaseEstudiantes { get; set; }
-        public ICollection<ClaseProfesor> ClaseProfesores { get; set; }
-        public ICollection<ClaseActividad> ClaseActividades { get; set; }
+        public int Id { get; set; }
+        public List<int> ClaseEstudiantes { get; set; }
+        public List<int> ClaseProfesores { get; set; }
+        public List<int> ClaseActividades { get; set; }
     }
 }
