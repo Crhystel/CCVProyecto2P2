@@ -64,6 +64,29 @@ namespace ApiCCV2.Controllers
             }
             return Ok("gucci");
         }
+        [HttpPut("{profesorId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateProfesor(int profesorId, [FromQuery] int materiaId, [FromQuery] int activiadId, [FromQuery] int claseId, [FromBody] ProfesorDto profesorUpdate)
+        {
+            if (profesorUpdate == null)
+                return BadRequest(ModelState);
+            if (profesorId != profesorUpdate.Id)
+                return BadRequest(ModelState);
+            if (!_profesor.ProfesorExiste(profesorId))
+                return NotFound();
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var profesorMap = _mapper.Map<Profesor>(profesorUpdate);
+            if (!_profesor.UpdateProfesor(claseId, materiaId, activiadId, profesorMap))
+            {
+                ModelState.AddModelError("", "Algo salió mal");
+                return StatusCode(500, ModelState);
+
+            }
+            return NoContent();
+        }
 
 
     }
