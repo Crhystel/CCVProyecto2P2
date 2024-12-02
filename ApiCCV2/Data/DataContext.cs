@@ -23,22 +23,11 @@ namespace ApiCCV2.Data
         public DbSet<Administrador> Administrador { get; set; } = default!;
         public DbSet<Materia> Materias { get; set; }
         public DbSet<MateriaProfesor> MateriaProfesores { get; set; }
-        public DbSet<GradoEstudiante> GradoEstudiantes { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<GradoEstudiante>()
-                .HasKey(c => new { c.EstudianteId, c.GradoId });
-            modelBuilder.Entity<GradoEstudiante>()
-                .HasOne(c=>c.Estudiante)
-                .WithMany(c=>c.GradoEstudiantes)
-                .HasForeignKey(c=>c.GradoId)
-                .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<GradoEstudiante>()
-                .HasOne(c => c.Grado)
-                .WithMany(c => c.GradoEstudiantes)
-                .HasForeignKey(c => c.EstudianteId)
-                .OnDelete(DeleteBehavior.Restrict);
+            
 
 
             modelBuilder.Entity<MateriaProfesor>()
@@ -54,21 +43,20 @@ namespace ApiCCV2.Data
                 .HasForeignKey(c => c.ProfesorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ClaseEstudiante>()
-                .HasKey(c => new { c.EstudianteId, c.ClaseId });
-            modelBuilder.Entity<ClaseEstudiante>()
-                .HasOne(c => c.Estudiante)
-                .WithMany(c => c.ClaseEstudiantes)
-                .HasForeignKey(c => c.EstudianteId)
+            modelBuilder.Entity<ClaseProfesor>()
+                .HasKey(c => new { c.ProfesorId, c.ClasePId });
+            modelBuilder.Entity<ClaseProfesor>()
+                .HasOne(c => c.Profesor)
+                .WithMany(c => c.ClaseProfesores)
+                .HasForeignKey(c => c.ProfesorId)
                 .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<ClaseEstudiante>()
-                .HasOne(c => c.Clase)
-                .WithMany(c => c.ClaseEstudiantes)
-                .HasForeignKey(c => c.ClaseId)
+            modelBuilder.Entity<ClaseProfesor>()
+                .HasOne(c => c.ClaseP)
+                .WithMany(c => c.ClaseProfesores)
+                .HasForeignKey(c => c.ClasePId)
                 .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<ClaseEstudiante>()
-                .Property(c => c.Grado)
-                .IsRequired();
+           
+
             modelBuilder.Entity<ClaseProfesor>()
                 .HasKey(c => new { c.ProfesorId, c.ClasePId });
             modelBuilder.Entity<ClaseProfesor>()

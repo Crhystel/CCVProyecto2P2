@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiCCV2.Migrations
 {
     /// <inheritdoc />
-    public partial class Migracion1 : Migration
+    public partial class Migracion11 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,6 +43,18 @@ namespace ApiCCV2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Administrador", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clases",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clases", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,8 +106,6 @@ namespace ApiCCV2.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MateriaId = table.Column<int>(type: "int", nullable: false),
-                    Materias = table.Column<int>(type: "int", nullable: false),
                     Cedula = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -106,128 +116,6 @@ namespace ApiCCV2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profesores", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ActividadEstudiantes",
-                columns: table => new
-                {
-                    EstudianteId = table.Column<int>(type: "int", nullable: false),
-                    ActividadId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ActividadEstudiantes", x => new { x.ActividadId, x.EstudianteId });
-                    table.ForeignKey(
-                        name: "FK_ActividadEstudiantes_Actividades_ActividadId",
-                        column: x => x.ActividadId,
-                        principalTable: "Actividades",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ActividadEstudiantes_Estudiantes_EstudianteId",
-                        column: x => x.EstudianteId,
-                        principalTable: "Estudiantes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GradoEstudiantes",
-                columns: table => new
-                {
-                    GradoId = table.Column<int>(type: "int", nullable: false),
-                    EstudianteId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GradoEstudiantes", x => new { x.EstudianteId, x.GradoId });
-                    table.ForeignKey(
-                        name: "FK_GradoEstudiantes_Estudiantes_GradoId",
-                        column: x => x.GradoId,
-                        principalTable: "Estudiantes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GradoEstudiantes_Grados_EstudianteId",
-                        column: x => x.EstudianteId,
-                        principalTable: "Grados",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clases",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MateriaId = table.Column<int>(type: "int", nullable: false),
-                    GradoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clases", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Clases_Grados_GradoId",
-                        column: x => x.GradoId,
-                        principalTable: "Grados",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Clases_Materias_MateriaId",
-                        column: x => x.MateriaId,
-                        principalTable: "Materias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ActividadProfesores",
-                columns: table => new
-                {
-                    ProfesorId = table.Column<int>(type: "int", nullable: false),
-                    ActividadId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ActividadProfesores", x => new { x.ActividadId, x.ProfesorId });
-                    table.ForeignKey(
-                        name: "FK_ActividadProfesores_Actividades_ActividadId",
-                        column: x => x.ActividadId,
-                        principalTable: "Actividades",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ActividadProfesores_Profesores_ProfesorId",
-                        column: x => x.ProfesorId,
-                        principalTable: "Profesores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MateriaProfesores",
-                columns: table => new
-                {
-                    ProfesorId = table.Column<int>(type: "int", nullable: false),
-                    MateriaId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MateriaProfesores", x => new { x.ProfesorId, x.MateriaId });
-                    table.ForeignKey(
-                        name: "FK_MateriaProfesores_Materias_ProfesorId",
-                        column: x => x.ProfesorId,
-                        principalTable: "Materias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_MateriaProfesores_Profesores_MateriaId",
-                        column: x => x.MateriaId,
-                        principalTable: "Profesores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -256,28 +144,80 @@ namespace ApiCCV2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClaseEstudiantes",
+                name: "ActividadEstudiantes",
                 columns: table => new
                 {
                     EstudianteId = table.Column<int>(type: "int", nullable: false),
+                    ActividadId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActividadEstudiantes", x => new { x.ActividadId, x.EstudianteId });
+                    table.ForeignKey(
+                        name: "FK_ActividadEstudiantes_Actividades_ActividadId",
+                        column: x => x.ActividadId,
+                        principalTable: "Actividades",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ActividadEstudiantes_Estudiantes_EstudianteId",
+                        column: x => x.EstudianteId,
+                        principalTable: "Estudiantes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClaseEstudiantes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ClaseId = table.Column<int>(type: "int", nullable: false),
+                    EstudianteId = table.Column<int>(type: "int", nullable: false),
                     Grado = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClaseEstudiantes", x => new { x.EstudianteId, x.ClaseId });
+                    table.PrimaryKey("PK_ClaseEstudiantes", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ClaseEstudiantes_Clases_ClaseId",
                         column: x => x.ClaseId,
                         principalTable: "Clases",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ClaseEstudiantes_Estudiantes_EstudianteId",
                         column: x => x.EstudianteId,
                         principalTable: "Estudiantes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ActividadProfesores",
+                columns: table => new
+                {
+                    ProfesorId = table.Column<int>(type: "int", nullable: false),
+                    ActividadId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActividadProfesores", x => new { x.ActividadId, x.ProfesorId });
+                    table.ForeignKey(
+                        name: "FK_ActividadProfesores_Actividades_ActividadId",
+                        column: x => x.ActividadId,
+                        principalTable: "Actividades",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ActividadProfesores_Profesores_ProfesorId",
+                        column: x => x.ProfesorId,
+                        principalTable: "Profesores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -286,7 +226,9 @@ namespace ApiCCV2.Migrations
                 {
                     ClasePId = table.Column<int>(type: "int", nullable: false),
                     ProfesorId = table.Column<int>(type: "int", nullable: false),
-                    Materia = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Materia = table.Column<int>(type: "int", nullable: false),
+                    EstudianteId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -298,8 +240,38 @@ namespace ApiCCV2.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_ClaseProfesores_Estudiantes_EstudianteId",
+                        column: x => x.EstudianteId,
+                        principalTable: "Estudiantes",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_ClaseProfesores_Profesores_ProfesorId",
                         column: x => x.ProfesorId,
+                        principalTable: "Profesores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MateriaProfesores",
+                columns: table => new
+                {
+                    ProfesorId = table.Column<int>(type: "int", nullable: false),
+                    MateriaId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MateriaProfesores", x => new { x.ProfesorId, x.MateriaId });
+                    table.ForeignKey(
+                        name: "FK_MateriaProfesores_Materias_ProfesorId",
+                        column: x => x.ProfesorId,
+                        principalTable: "Materias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MateriaProfesores_Profesores_MateriaId",
+                        column: x => x.MateriaId,
                         principalTable: "Profesores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -313,12 +285,12 @@ namespace ApiCCV2.Migrations
             migrationBuilder.InsertData(
                 table: "Estudiantes",
                 columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Grado", "Nombre", "NombreUsuario", "Rol" },
-                values: new object[] { 1, "0111111111", "crhys", 19, 2, "Crhystel", "crhys", 1 });
+                values: new object[] { 1, "0111111111", "crhys", 19, 0, "Crhystel", "crhys", 1 });
 
             migrationBuilder.InsertData(
                 table: "Profesores",
-                columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "MateriaId", "Materias", "Nombre", "NombreUsuario", "Rol" },
-                values: new object[] { 1, "0111111122", "yuli", 19, 0, 4, "Yuliana", "yuli", 2 });
+                columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Nombre", "NombreUsuario", "Rol" },
+                values: new object[] { 1, "0111111122", "yuli", 19, "Yuliana", "yuli", 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActividadEstudiantes_EstudianteId",
@@ -341,24 +313,19 @@ namespace ApiCCV2.Migrations
                 column: "ClaseId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClaseEstudiantes_EstudianteId",
+                table: "ClaseEstudiantes",
+                column: "EstudianteId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ClaseProfesores_ClasePId",
                 table: "ClaseProfesores",
                 column: "ClasePId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clases_GradoId",
-                table: "Clases",
-                column: "GradoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clases_MateriaId",
-                table: "Clases",
-                column: "MateriaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GradoEstudiantes_GradoId",
-                table: "GradoEstudiantes",
-                column: "GradoId");
+                name: "IX_ClaseProfesores_EstudianteId",
+                table: "ClaseProfesores",
+                column: "EstudianteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MateriaProfesores_MateriaId",
@@ -388,7 +355,7 @@ namespace ApiCCV2.Migrations
                 name: "ClaseProfesores");
 
             migrationBuilder.DropTable(
-                name: "GradoEstudiantes");
+                name: "Grados");
 
             migrationBuilder.DropTable(
                 name: "MateriaProfesores");
@@ -403,13 +370,10 @@ namespace ApiCCV2.Migrations
                 name: "Estudiantes");
 
             migrationBuilder.DropTable(
-                name: "Profesores");
-
-            migrationBuilder.DropTable(
-                name: "Grados");
-
-            migrationBuilder.DropTable(
                 name: "Materias");
+
+            migrationBuilder.DropTable(
+                name: "Profesores");
         }
     }
 }

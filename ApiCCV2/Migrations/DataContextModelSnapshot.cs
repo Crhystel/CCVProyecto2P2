@@ -169,21 +169,26 @@ namespace ApiCCV2.Migrations
 
             modelBuilder.Entity("ApiCCV2.Models.ClaseEstudiante", b =>
                 {
-                    b.Property<int>("EstudianteId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("ClaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EstudianteId")
                         .HasColumnType("int");
 
                     b.Property<int>("Grado")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("EstudianteId", "ClaseId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ClaseId");
+
+                    b.HasIndex("EstudianteId");
 
                     b.ToTable("ClaseEstudiantes");
                 });
@@ -196,6 +201,9 @@ namespace ApiCCV2.Migrations
                     b.Property<int>("ClasePId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("EstudianteId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
@@ -205,6 +213,8 @@ namespace ApiCCV2.Migrations
                     b.HasKey("ProfesorId", "ClasePId");
 
                     b.HasIndex("ClasePId");
+
+                    b.HasIndex("EstudianteId");
 
                     b.ToTable("ClaseProfesores");
                 });
@@ -228,6 +238,9 @@ namespace ApiCCV2.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Edad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Grado")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
@@ -254,6 +267,7 @@ namespace ApiCCV2.Migrations
                             Cedula = "0111111111",
                             Contrasenia = "crhys",
                             Edad = 19,
+                            Grado = 0,
                             Nombre = "Crhystel",
                             NombreUsuario = "crhys",
                             Rol = 1
@@ -271,24 +285,6 @@ namespace ApiCCV2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Grados");
-                });
-
-            modelBuilder.Entity("ApiCCV2.Models.GradoEstudiante", b =>
-                {
-                    b.Property<int>("EstudianteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GradoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("EstudianteId", "GradoId");
-
-                    b.HasIndex("GradoId");
-
-                    b.ToTable("GradoEstudiantes");
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.Materia", b =>
@@ -435,13 +431,13 @@ namespace ApiCCV2.Migrations
                     b.HasOne("ApiCCV2.Models.Clase", "Clase")
                         .WithMany("ClaseEstudiantes")
                         .HasForeignKey("ClaseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApiCCV2.Models.Estudiante", "Estudiante")
-                        .WithMany("ClaseEstudiantes")
+                        .WithMany()
                         .HasForeignKey("EstudianteId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Clase");
@@ -457,6 +453,10 @@ namespace ApiCCV2.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("ApiCCV2.Models.Estudiante", null)
+                        .WithMany("ClaseEstudiantes")
+                        .HasForeignKey("EstudianteId");
+
                     b.HasOne("ApiCCV2.Models.Profesor", "Profesor")
                         .WithMany("ClaseProfesores")
                         .HasForeignKey("ProfesorId")
@@ -466,25 +466,6 @@ namespace ApiCCV2.Migrations
                     b.Navigation("ClaseP");
 
                     b.Navigation("Profesor");
-                });
-
-            modelBuilder.Entity("ApiCCV2.Models.GradoEstudiante", b =>
-                {
-                    b.HasOne("ApiCCV2.Models.Grado", "Grado")
-                        .WithMany("GradoEstudiantes")
-                        .HasForeignKey("EstudianteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("ApiCCV2.Models.Estudiante", "Estudiante")
-                        .WithMany("GradoEstudiantes")
-                        .HasForeignKey("GradoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Estudiante");
-
-                    b.Navigation("Grado");
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.MateriaProfesor", b =>
@@ -529,13 +510,6 @@ namespace ApiCCV2.Migrations
                     b.Navigation("ActividadEstudiantes");
 
                     b.Navigation("ClaseEstudiantes");
-
-                    b.Navigation("GradoEstudiantes");
-                });
-
-            modelBuilder.Entity("ApiCCV2.Models.Grado", b =>
-                {
-                    b.Navigation("GradoEstudiantes");
                 });
 
             modelBuilder.Entity("ApiCCV2.Models.Materia", b =>

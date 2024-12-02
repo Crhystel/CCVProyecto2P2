@@ -9,6 +9,6 @@
     public class Grado
     {
         public int Id { get; set; }
-        public ICollection<GradoEstudiante> GradoEstudiantes{ get; set; }
+       
     }
 }

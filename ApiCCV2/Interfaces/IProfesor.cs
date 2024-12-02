@@ -10,6 +10,6 @@ namespace ApiCCV2.Interfaces
         bool UpdateProfesor(int claseId, int actividadId, int materiaId, Profesor profesor);
         bool DeleteProfesor(int claseId, int actividadId, int materiaId, Profesor profesor);
         bool ProfesorExiste(int id);
-
+        bool Save();
     }
 }

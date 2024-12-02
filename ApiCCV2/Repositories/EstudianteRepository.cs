@@ -24,12 +24,7 @@ namespace ApiCCV2.Repositories
 
             };
             _context.Add(claseEstudianteNuevo);
-            var gradoEstudianteNuevo = new GradoEstudiante()
-            {
-                Grado = gradoEstudiante,
-                Estudiante = estudiante,
-            };
-            _context.Add(gradoEstudianteNuevo);
+           
             var actividadEstudianteNuevo = new ActividadEstudiante()
             {
                 Actividad = actividadEstudiante,
@@ -40,11 +35,6 @@ namespace ApiCCV2.Repositories
             return Save();
         }
 
-        public bool DeleteEstudiante(int claseId, int gradoId, int actividadId, Estudiante estudiante)
-        {
-            _context.Remove(estudiante);
-            return Save();
-        }
 
         public bool EstudianteExiste(int id)
         {
@@ -71,6 +61,12 @@ namespace ApiCCV2.Repositories
         ICollection<Estudiante> IEstudiante.GetEstudiantes()
         {
             return _context.Estudiantes.OrderBy(c => c.Id).ToList();
+        }
+
+        public bool DeleteEstudiante(Estudiante estudiante)
+        {
+            _context.Remove(estudiante);
+            return Save();
         }
     }
 }

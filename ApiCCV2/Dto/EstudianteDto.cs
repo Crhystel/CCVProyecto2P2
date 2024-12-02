@@ -11,5 +11,8 @@ namespace ApiCCV2.Dto
         public string Nombre { get; set; }
         public int Edad { get; set; }
         public string Cedula { get; set; }
+        public List<int> ClaseId { get; set; }
+        public List<int> ActividadId { get; set; }
+        
     }
 }

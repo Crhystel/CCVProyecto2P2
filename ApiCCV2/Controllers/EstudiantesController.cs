@@ -43,7 +43,7 @@ namespace ApiCCV2.Controllers
                 return BadRequest(ModelState);
             return Ok(estudiante);
         }
-      [HttpPost]
+    [HttpPost]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     public IActionResult CrearEstudiante([FromQuery] int claseId, [FromQuery] int gradoId, [FromQuery] int actividadId, [FromBody] EstudianteDto estudianteCreate)
@@ -94,7 +94,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult DeleteEstudiante (int estudianteId, [FromQuery] int gradoId, [FromQuery] int actividadId, [FromQuery] int claseId, [FromBody] EstudianteDto estudianteUpdate)
+        public IActionResult DeleteEstudiante (int estudianteId, [FromBody] EstudianteDto estudianteUpdate)
         {
             if (!_estudiante.EstudianteExiste(estudianteId))
             {
@@ -104,7 +104,7 @@ namespace ApiCCV2.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            if (!_estudiante.DeleteEstudiante(claseId,gradoId,actividadId,estudianteDelete))
+            if (!_estudiante.DeleteEstudiante(estudianteDelete))
             {
                 ModelState.AddModelError("", "algo salio mal");
             }
