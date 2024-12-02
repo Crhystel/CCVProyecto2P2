@@ -22,7 +22,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Profesor>))]
         public IActionResult GetProfesores()
         {
-            var profesores = _mapper.Map<List<ProfesorDto>>(_profesor.GetProfesores());
+            var profesores = _mapper.Map<List<ClaseDto>>(_profesor.GetProfesores());
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(profesores);
@@ -35,7 +35,7 @@ namespace ApiCCV2.Controllers
         {
             if (!_profesor.ProfesorExiste(pId))
                 return NotFound();
-            var profesor = _mapper.Map<ProfesorDto>(_profesor.GetProfesor(pId));
+            var profesor = _mapper.Map<ClaseDto>(_profesor.GetProfesor(pId));
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(profesor);
@@ -68,7 +68,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateProfesor(int profesorId, [FromQuery] int materiaId, [FromQuery] int activiadId, [FromQuery] int claseId, [FromBody] ProfesorDto profesorUpdate)
+        public IActionResult UpdateProfesor([FromQuery]int profesorId, [FromQuery] int materiaId, [FromQuery] int activiadId, [FromQuery] int claseId, [FromBody] ClaseDto profesorUpdate)
         {
             if (profesorUpdate == null)
                 return BadRequest(ModelState);

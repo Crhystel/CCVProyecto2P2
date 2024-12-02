@@ -28,12 +28,22 @@ namespace ApiCCV2.Repositories
                 Profesor = profesorClase,
             };
             _context.Add(nuevoProfesorClase);
+            var nuevoEstudianteClase = new ClaseEstudiante()
+            {
+                Clase = claseClase,
+                Estudiante= estudianteClase
+            };
+            _context.Add(nuevoEstudianteClase);
+
             return Save();
         }
 
-        public bool DeleteClase(Clase clase)
+       
+
+        public bool DeleteClase( Clase clase)
         {
-            throw new NotImplementedException();
+            _context.Remove(clase);
+            return Save();
         }
 
         public Clase GetClase(int id)
@@ -48,12 +58,14 @@ namespace ApiCCV2.Repositories
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
 
         public bool UpdateClase(int claseId,int estudiantesId, int profesoresId, Clase clase)
         {
-            throw new NotImplementedException();
+            _context.Update(clase);
+            return Save();
         }
     }
 }
