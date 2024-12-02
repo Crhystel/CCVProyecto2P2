@@ -40,11 +40,13 @@ namespace ApiCCV2.Repositories
             return Save();
         }
 
-        public bool DeleteProfesor(int claseId, int actividadId, int materiaId, Profesor profesor)
+        public bool DeleteProfesor( Profesor profesor)
         {
             _context.Remove(profesor);
             return Save();
         }
+
+       
 
         public Profesor GetProfesor(int id)
         {

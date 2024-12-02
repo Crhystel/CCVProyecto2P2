@@ -25,7 +25,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Estudiante>))]
         public IActionResult GetEstudiantes()
         {
-            var estudiantes = _mapper.Map<List<EstudianteDto>>(_estudiante.GetEstudiantes());
+            var estudiantes = _mapper.Map<List<ProfesorDto>>(_estudiante.GetEstudiantes());
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(estudiantes);
@@ -38,7 +38,7 @@ namespace ApiCCV2.Controllers
         {
             if (!_estudiante.EstudianteExiste(eId))
                 return NotFound();
-            var estudiante = _mapper.Map<EstudianteDto>(_estudiante.GetEstudiante(eId));
+            var estudiante = _mapper.Map<ProfesorDto>(_estudiante.GetEstudiante(eId));
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(estudiante);
@@ -46,7 +46,7 @@ namespace ApiCCV2.Controllers
     [HttpPost]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
-    public IActionResult CrearEstudiante([FromQuery] int claseId, [FromQuery] int gradoId, [FromQuery] int actividadId, [FromBody] EstudianteDto estudianteCreate)
+    public IActionResult CrearEstudiante([FromQuery] int claseId, [FromQuery] int gradoId, [FromQuery] int actividadId, [FromBody] ProfesorDto estudianteCreate)
         {
             if (estudianteCreate == null)
                 return BadRequest(ModelState);
@@ -94,7 +94,7 @@ namespace ApiCCV2.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult DeleteEstudiante (int estudianteId, [FromBody] EstudianteDto estudianteUpdate)
+        public IActionResult DeleteEstudiante (int estudianteId, [FromBody] ProfesorDto estudianteUpdate)
         {
             if (!_estudiante.EstudianteExiste(estudianteId))
             {

@@ -58,7 +58,7 @@ namespace ApiCCV2.Repositories
             return Save();
         }
 
-        ICollection<Estudiante> IEstudiante.GetEstudiantes()
+        public ICollection<Estudiante> GetEstudiantes()
         {
             return _context.Estudiantes.OrderBy(c => c.Id).ToList();
         }

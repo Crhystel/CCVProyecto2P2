@@ -40,7 +40,31 @@ namespace ApiCCV2.Controllers
                 return BadRequest(ModelState);
             return Ok(profesor);
         }
-        
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CrearProfesor([FromQuery] int claseId, [FromQuery] int materiaId, [FromQuery] int actividadId, [FromBody] ProfesorDto profesorCreate)
+        {
+            if (profesorCreate == null)
+                return BadRequest(ModelState);
+            var profesores = _profesor.GetProfesores()
+                .Where(c => c.Nombre == profesorCreate.Nombre).FirstOrDefault();
+            if (profesores != null)
+            {
+                ModelState.AddModelError("", "Profesor ya existe");
+                return StatusCode(422, ModelState);
+            }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var profesorMap = _mapper.Map<Profesor>(profesorCreate);
+            if (!_profesor.CreateProfesor(claseId, materiaId, actividadId, profesorMap))
+            {
+                ModelState.AddModelError("", "Algo salio mal");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("gucci");
+        }
+
 
     }
 }
