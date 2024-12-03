@@ -8,12 +8,12 @@
 
             <Button 
              Grid.Row="0" 
-             Text="Nuevo Empleado" 
+             Text="Nuevo Profesor" 
              Command="{Binding CrearCommand}" />
 
             <Label 
              Grid.Row="1" 
-             Text="Lista de empleados" 
+             Text="Lista de profesores" 
              FontSize="Subtitle" />
 
             <ScrollView Grid.Row="2">

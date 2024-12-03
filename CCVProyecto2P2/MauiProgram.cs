@@ -1,5 +1,4 @@
 ﻿using CCVProyecto2P2.DataAccess;
-using CCVProyecto2P2.Services.EstudianteService;
 using CCVProyecto2P2.ViewsModels;
 using Microsoft.Extensions.Logging;
 using CCVProyecto2P2.Models;
@@ -39,12 +38,12 @@ namespace CCVProyecto2P2
             dbContext.Dispose();
 
             Routing.RegisterRoute(nameof(AgregarEstudianteView), typeof(AgregarEstudianteView));
+            Routing.RegisterRoute(nameof(AgregarProfesorView), typeof(AgregarProfesorView));
 
 #if DEBUG
             builder.Logging.AddDebug();
-            builder.Services.AddSingleton<IEstudiante, EstudianteService>();
             builder.Services.AddSingleton<EstudianteViewModel>();
-
+            builder.Services.AddSingleton<ProfesorViewModel>();
 #endif
 
             return builder.Build();
