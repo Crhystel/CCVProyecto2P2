@@ -1,4 +1,5 @@
 using CCVProyecto2P2.ViewsAdmin;
+using CCVProyecto2P2.ViewsProfesor;
 
 namespace CCVProyecto2P2.Views;
 
@@ -10,11 +11,11 @@ public partial class AdministradoresView : ContentPage
 	}
     public void CrearProfesor_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new AgregarProfesorView());
+        Navigation.PushAsync(new PMainPage());
     }
     public void CrearEstudiante_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new MainPage());
+        Navigation.PushAsync(new EMainPage());
     }
     public void CrearCurso_Clicked(object sender, EventArgs e)
     {
