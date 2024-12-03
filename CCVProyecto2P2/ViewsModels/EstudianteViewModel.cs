@@ -23,7 +23,7 @@ namespace CCVProyecto2P2.ViewsModels
                 OnPropertyChanged();
             }
         }
-        public static readonly string baseUrl = "http://192.168.100.20:5000";
+        public static readonly string baseUrl = "http://192.168.100.20:7129";
 
         public ObservableCollection<RolEnum> Roles { get; } = new ObservableCollection<RolEnum>(Enum.GetValues<RolEnum>());
         public ObservableCollection<GradoEnum> Grados { get; } = new ObservableCollection<GradoEnum>(Enum.GetValues<GradoEnum>());
@@ -59,12 +59,12 @@ namespace CCVProyecto2P2.ViewsModels
         public async Task<bool> AddUpdateEstudianteAsync(Estudiante estudiante)
         {
             string json = JsonConvert.SerializeObject(estudiante);
-            StringContent content = new StringContent(json, Encoding.UTF8, "aplicacion/json");
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpClient client = new HttpClient();
 
             if (estudiante.Id == 0)
             {
-                string url = baseUrl + "/Estudiantes";
+                string url = $"{baseUrl}/Estudiantes/{estudiante.Id}";
                 client.BaseAddress = new Uri(url);
                 HttpResponseMessage responseMessage = await client.PostAsync("", content);
                 if (responseMessage.IsSuccessStatusCode)
