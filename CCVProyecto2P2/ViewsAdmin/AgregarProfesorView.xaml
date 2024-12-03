@@ -2,11 +2,32 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.ViewsAdmin.AgregarProfesorView"
-             Title="AgregarProfesorView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Profesor"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             xmlns:viewmodel="clr-namespace:CCVProyecto2P2.ViewsModels"
+                      Title="{Binding TituloPagina}">
+
+    <ContentPage.BindingContext>
+        <viewmodel:ProfesorViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#e6e2dc">
+        <ActivityIndicator IsVisible="{Binding LoadingProfesor}"
+                       IsRunning="{Binding LoadingProfesor}"
+                       Color="LimeGreen"
+                       HeightRequest="30"/>
+        <Label Text="Cédula"/>
+        <Entry Text="{Binding ProfesorDto.Cedula}" Margin="0,0,0,10"/>
+        <Label Text="Nombre Completo"/>
+        <Entry Text="{Binding ProfesorDto.Nombre}" Margin="0,0,0,10"/>
+        <Label Text="Nombre de usuario"/>
+        <Entry Text="{Binding ProfesorDto.NombreUsuario}" Margin="0,0,0,10"/>
+        <Label Text="Contraseña"/>
+        <Entry Text="{Binding ProfesorDto.Contrasenia}" Margin="0,0,0,10"/>
+        <Label Text="Edad"/>
+        <Entry Text="{Binding ProfesorDto.Edad}" Margin="0,0,0,10"/>
+        <Label Text="Grado"/>
+        <Picker ItemsSource="{Binding MateriasDisponibles}" 
+        SelectedItem="{Binding ProfesorDto.Materia}"
+        Margin="0,0,0,10"/>
+        <Button Text="Crear" Command="{Binding GuardarCommand}" BackgroundColor="LimeGreen"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -66,7 +66,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Estudiante Views\EMainPage.xaml.cs">
+	  <Compile Update="ViewsEstudiante\EMainPage.xaml.cs">
 	    <DependentUpon>EMainPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\EstudiantesView.xaml.cs">
@@ -91,6 +91,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ViewsProfesor\CrearActividadView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewsProfesor\PMainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AdministradoresView.xaml">

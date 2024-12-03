@@ -4,6 +4,7 @@ using CCVProyecto2P2.ViewsModels;
 using Microsoft.Extensions.Logging;
 using CCVProyecto2P2.Models;
 using CCVProyecto2P2.ViewsAdmin;
+using CCVProyecto2P2.ViewsProfesor;
 
 
 namespace CCVProyecto2P2
@@ -27,10 +28,13 @@ namespace CCVProyecto2P2
 
             builder.Services.AddDbContext<DBContext>();
             builder.Services.AddTransient<AgregarEstudianteView>();
+            builder.Services.AddTransient<AgregarProfesorView>();
             builder.Services.AddTransient<EstudianteViewModel>();
 
-            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<EMainPage>();
             builder.Services.AddTransient<EMainViewModel>();
+            builder.Services.AddTransient<PMainPage>();
+            builder.Services.AddTransient<PMainViewModel>();
             dbContext.Database.EnsureCreated();
             dbContext.Dispose();
 

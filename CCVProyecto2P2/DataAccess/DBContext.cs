@@ -16,12 +16,17 @@ namespace CCVProyecto2P2.DataAccess
         public DbSet<Estudiante> Estudiante { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string conexionDB = $"Filename ={ConexionDB.DevolverRuta("estudiantes.db")}";
+            string conexionDB = $"Filename ={ConexionDB.DevolverRuta("proyectooo.db")}";
             optionsBuilder.UseSqlite(conexionDB);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Estudiante>(entity =>
+            {
+                entity.HasKey(c => c.Id);
+                entity.Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
+            });
+            modelBuilder.Entity<Profesor>(entity =>
             {
                 entity.HasKey(c => c.Id);
                 entity.Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
