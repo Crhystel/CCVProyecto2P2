@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CCVProyecto2P2.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace CCVProyecto2P2.Dto
         public string contrasenia;
         [ObservableProperty]
         public int edad;
+        [ObservableProperty]
+        private GradoEnum grado;
+
 
     }
 }

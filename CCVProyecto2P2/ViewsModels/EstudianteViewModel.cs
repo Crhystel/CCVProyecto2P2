@@ -13,7 +13,8 @@ namespace CCVProyecto2P2.ViewsModels
     {
         private readonly EstudianteDBContext _dbContext;
 
-
+        public List<GradoEnum> GradosDisponibles { get; } = Enum.GetValues(typeof(GradoEnum)).Cast<GradoEnum>().ToList();
+       
         [ObservableProperty]
         private EstudianteDto estudianteDto = new();
 
@@ -58,7 +59,8 @@ namespace CCVProyecto2P2.ViewsModels
                         Cedula = encontrado.Cedula,
                         Contrasenia = encontrado.Contrasenia,
                         Nombre = encontrado.Nombre,
-                        NombreUsuario = encontrado.NombreUsuario
+                        NombreUsuario = encontrado.NombreUsuario,
+                        Grado= encontrado.Grado,
                     };
                 }
 
@@ -83,7 +85,8 @@ namespace CCVProyecto2P2.ViewsModels
                         NombreUsuario = EstudianteDto.NombreUsuario,
                         Contrasenia = EstudianteDto.Contrasenia,
                         Edad = EstudianteDto.Edad,
-                        Cedula = EstudianteDto.Cedula
+                        Cedula = EstudianteDto.Cedula,
+                        Grado= EstudianteDto.Grado,
                     };
 
                     _dbContext.Estudiante.Add(tbEstudiante);
@@ -108,6 +111,7 @@ namespace CCVProyecto2P2.ViewsModels
                         encontrado.Contrasenia = EstudianteDto.Contrasenia;
                         encontrado.Edad = EstudianteDto.Edad;
                         encontrado.Cedula = EstudianteDto.Cedula;
+                        encontrado.Grado = EstudianteDto.Grado;
 
                         await _dbContext.SaveChangesAsync();
 

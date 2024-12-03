@@ -42,6 +42,7 @@ namespace CCVProyecto2P2.ViewsModels
                         Nombre = item.Nombre,
                         Cedula = item.Cedula,
                         Edad = item.Edad,
+                        Grado = item.Grado,
                     });
                 }
             }
@@ -62,6 +63,7 @@ namespace CCVProyecto2P2.ViewsModels
                 encontrado.Contrasenia = estudianteDto.Contrasenia;
                 encontrado.Cedula = estudianteDto.Cedula;
                 encontrado.Edad = estudianteDto.Edad;
+                encontrado.Grado = estudianteDto.Grado;
             }
         }
         [RelayCommand]
