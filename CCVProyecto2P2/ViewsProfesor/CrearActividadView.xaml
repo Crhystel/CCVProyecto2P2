@@ -83,7 +83,7 @@
             <Button Text="AGREGAR ARCHIVO" BackgroundColor="Black" TextColor="White">
             </Button>
             <Label Text=""> </Label>
-            <Button Text="Guardar" BackgroundColor="Black" TextColor="White">
+            <Button Text="Guardar" BackgroundColor="Black" TextColor="White" Clicked="OnGuardarClicked">
             </Button>
 
         </VerticalStackLayout>
