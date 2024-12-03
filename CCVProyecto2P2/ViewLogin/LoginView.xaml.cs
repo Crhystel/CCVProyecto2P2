@@ -14,20 +14,19 @@ public partial class LoginView : ContentPage
         string usuario = UsuarioEntry.Text; 
         string contrasenia = ContraseniaEntry.Text;
 
-        // Simulación de autenticación
+        
         if (usuario == "admin" && contrasenia == "admin")
         {
-            // Navegar al panel del administrador
             await Navigation.PushAsync(new AdministradoresView());
         }
         else
         {
-            // Lógica de autenticación
+            
             var usuarioAutenticado = await AutenticarUsuarioAsync(usuario, contrasenia);
 
             if (usuarioAutenticado != null)
             {
-                // Redirigir basado en el rol del usuario
+                
                 switch (usuarioAutenticado.Rol)
                 {
                     case RolEnum.Administrador:
