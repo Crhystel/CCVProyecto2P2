@@ -9,7 +9,7 @@ public partial class SoporteView : ContentPage
 
     private async void OnWhatsAppTapped(object sender, EventArgs e)
     {
-        string telefono = "593998765432"; 
+        string telefono = "593969716019"; 
         string mensaje = "Hola, necesito ayuda con mi cuenta.";
         string url = $"https://wa.me/{telefono}?text={Uri.EscapeDataString(mensaje)}";
 
