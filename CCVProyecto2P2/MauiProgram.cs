@@ -23,9 +23,9 @@ namespace CCVProyecto2P2
                     fonts.AddFont("Schoolwork-Regular.ttf", "SchoolworkFont");
 
                 });
-            var dbContext = new EstudianteDBContext();
+            var dbContext = new DBContext();
 
-            builder.Services.AddDbContext<EstudianteDBContext>();
+            builder.Services.AddDbContext<DBContext>();
             builder.Services.AddTransient<AgregarEstudianteView>();
             builder.Services.AddTransient<EstudianteViewModel>();
 

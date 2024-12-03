@@ -8,6 +8,6 @@ public partial class AgregarEstudianteView : ContentPage
     public AgregarEstudianteView()
     {
         InitializeComponent();
-        BindingContext = new EstudianteViewModel(new EstudianteDBContext());
+        BindingContext = new EstudianteViewModel(new DBContext());
     }
 }

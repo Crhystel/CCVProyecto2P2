@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CCVProyecto2P2.DataAccess
 {
-    public class EstudianteDBContext : DbContext
+    public class DBContext : DbContext
     {
         public DbSet<Estudiante> Estudiante { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

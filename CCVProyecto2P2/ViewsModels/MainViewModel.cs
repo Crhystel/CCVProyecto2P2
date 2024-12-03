@@ -14,10 +14,10 @@ namespace CCVProyecto2P2.ViewsModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        private readonly EstudianteDBContext _dbContext;
+        private readonly DBContext _dbContext;
         [ObservableProperty]
         private ObservableCollection<EstudianteDto> listaEstudiante = new ObservableCollection<EstudianteDto>();
-        public MainViewModel(EstudianteDBContext context)
+        public MainViewModel(DBContext context)
         {
             _dbContext = context;
             MainThread.BeginInvokeOnMainThread(new Action(async () => await Obtener()));

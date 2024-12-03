@@ -11,7 +11,7 @@ namespace CCVProyecto2P2.ViewsModels
 {
     public partial class EstudianteViewModel : ObservableObject, IQueryAttributable
     {
-        private readonly EstudianteDBContext _dbContext;
+        private readonly DBContext _dbContext;
 
         public List<GradoEnum> GradosDisponibles { get; } = Enum.GetValues(typeof(GradoEnum)).Cast<GradoEnum>().ToList();
        
@@ -26,7 +26,7 @@ namespace CCVProyecto2P2.ViewsModels
         [ObservableProperty]
         private bool loadingEstudiante = false;
 
-        public EstudianteViewModel(EstudianteDBContext context)
+        public EstudianteViewModel(DBContext context)
         {
             _dbContext = context;
         }
