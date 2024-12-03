@@ -14,14 +14,14 @@ public partial class AdministradoresView : ContentPage
     }
     public void CrearEstudiante_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new AgregarProfesorView());
+        Navigation.PushAsync(new AgregarEstudianteView());
     }
     public void CrearCurso_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new AgregarProfesorView());
+        Navigation.PushAsync(new CrearCursoView());
     }
     public void UnirEstudiante_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new AgregarProfesorView());
+        Navigation.PushAsync(new UnirEstudianteView());
     }
 }

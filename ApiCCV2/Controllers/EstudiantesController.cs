@@ -43,7 +43,7 @@ namespace ApiCCV2.Controllers
                 return BadRequest(ModelState);
             return Ok(estudiante);
         }
-    [HttpPost]
+    [HttpPost("{postEstudianteId}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     public IActionResult CrearEstudiante([FromQuery] GradoEnum gradoId,  [FromBody] EstudianteDto estudianteCreate)
@@ -90,7 +90,7 @@ namespace ApiCCV2.Controllers
             }
             return NoContent();
         }
-        [HttpDelete("{estudianteId}")]
+        [HttpDelete("{deleteEstudianteId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
