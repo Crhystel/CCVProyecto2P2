@@ -73,7 +73,7 @@ namespace CCVProyecto2P2.ViewsModels
         {
             LoadingEstudiante = true;
 
-            var mensaje = new EstudianteCuerpo();
+            var mensaje = new Cuerpo();
 
             await Task.Run(async () =>
             {
@@ -94,7 +94,7 @@ namespace CCVProyecto2P2.ViewsModels
 
                     EstudianteDto.Id = tbEstudiante.Id;
 
-                    mensaje = new EstudianteCuerpo
+                    mensaje = new Cuerpo
                     {
                         EsCrear = true,
                         EstudianteDto = EstudianteDto
@@ -115,7 +115,7 @@ namespace CCVProyecto2P2.ViewsModels
 
                         await _dbContext.SaveChangesAsync();
 
-                        mensaje = new EstudianteCuerpo
+                        mensaje = new Cuerpo
                         {
                             EsCrear = false,
                             EstudianteDto = EstudianteDto
@@ -126,7 +126,7 @@ namespace CCVProyecto2P2.ViewsModels
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     LoadingEstudiante = false;
-                    WeakReferenceMessenger.Default.Send(new EstudianteMensajeria(mensaje));
+                    WeakReferenceMessenger.Default.Send(new Mensajeria(mensaje));
                     Shell.Current.Navigation.PopAsync();
                 });
             });

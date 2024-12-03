@@ -66,6 +66,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Estudiante Views\EMainPage.xaml.cs">
+	    <DependentUpon>EMainPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\EstudiantesView.xaml.cs">
 	    <DependentUpon>EstudiantesView.xaml</DependentUpon>
 	  </Compile>

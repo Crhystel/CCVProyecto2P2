@@ -12,16 +12,16 @@ using CCVProyecto2P2.ViewsAdmin;
 
 namespace CCVProyecto2P2.ViewsModels
 {
-    public partial class MainViewModel : ObservableObject
+    public partial class EMainViewModel : ObservableObject
     {
         private readonly DBContext _dbContext;
         [ObservableProperty]
         private ObservableCollection<EstudianteDto> listaEstudiante = new ObservableCollection<EstudianteDto>();
-        public MainViewModel(DBContext context)
+        public EMainViewModel(DBContext context)
         {
             _dbContext = context;
             MainThread.BeginInvokeOnMainThread(new Action(async () => await Obtener()));
-            WeakReferenceMessenger.Default.Register<EstudianteMensajeria>(this, (r, m) =>
+            WeakReferenceMessenger.Default.Register<Mensajeria>(this, (r, m) =>
             {
                 EstudianteMensajeRecibido(m.Value);
 
@@ -47,7 +47,7 @@ namespace CCVProyecto2P2.ViewsModels
                 }
             }
         }
-        private void EstudianteMensajeRecibido(EstudianteCuerpo estudianteCuerpo)
+        private void EstudianteMensajeRecibido(Cuerpo estudianteCuerpo)
         {
             var estudianteDto = estudianteCuerpo.EstudianteDto;
             if (estudianteCuerpo.EsCrear)

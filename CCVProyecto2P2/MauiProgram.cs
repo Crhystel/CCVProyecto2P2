@@ -30,7 +30,7 @@ namespace CCVProyecto2P2
             builder.Services.AddTransient<EstudianteViewModel>();
 
             builder.Services.AddTransient<MainPage>();
-            builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<EMainViewModel>();
             dbContext.Database.EnsureCreated();
             dbContext.Dispose();
 

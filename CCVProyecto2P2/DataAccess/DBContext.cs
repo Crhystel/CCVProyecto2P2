@@ -12,6 +12,7 @@ namespace CCVProyecto2P2.DataAccess
 {
     public class DBContext : DbContext
     {
+        public DbSet<Profesor> Profesor { get; set; }
         public DbSet<Estudiante> Estudiante { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

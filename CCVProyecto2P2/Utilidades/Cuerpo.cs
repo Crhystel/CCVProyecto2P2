@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace CCVProyecto2P2.Utilidades
 {
-    public class EstudianteCuerpo
+    public class Cuerpo
     {
         public bool EsCrear { get; set; }
         public EstudianteDto EstudianteDto { get; set; }
+        public ProfesorDto ProfesorDto { get; set; }
     }
 }

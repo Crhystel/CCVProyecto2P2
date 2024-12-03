@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CCVProyecto2P2.Utilidades
 {
-    public class EstudianteMensajeria : ValueChangedMessage<EstudianteCuerpo>
+    public class Mensajeria : ValueChangedMessage<Cuerpo>
     {
-        public EstudianteMensajeria(EstudianteCuerpo value) : base(value) { }
+        public Mensajeria(Cuerpo value) : base(value) { }
 
     }
 }
