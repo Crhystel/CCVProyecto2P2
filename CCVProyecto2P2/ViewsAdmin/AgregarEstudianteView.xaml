@@ -2,11 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.ViewsAdmin.AgregarEstudianteView"
-             Title="AgregarEstudianteView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Estudiante jkvsbkjvwjvgbwjhbg"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             xmlns:vm="clr-namespace:CCVProyecto2P2.ViewsModels"
+             Title="Agregar Estudiante">
+
+    <ContentPage.BindingContext>
+        <vm:EstudianteViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Agregar Estudiante" FontSize="24" HorizontalOptions="Center" />
+
+        <Entry Placeholder="Nombre" Text="{Binding Estudiante.Nombre}" />
+        <Entry Placeholder="Cédula" Text="{Binding Estudiante.Cedula}" Keyboard="Numeric" />
+        <Entry Placeholder="Nombre de Usuario" Text="{Binding Estudiante.NombreUsuario}" />
+        <Entry Placeholder="Contraseña" Text="{Binding Estudiante.Contrasenia}" IsPassword="True" />
+        <Entry Placeholder="Edad" Text="{Binding Estudiante.Edad}" Keyboard="Numeric" />
+
+        <Picker Title="Rol" ItemsSource="{Binding Roles}" SelectedItem="{Binding Estudiante.Rol}" />
+        <Picker Title="Grado" ItemsSource="{Binding Grados}" SelectedItem="{Binding Estudiante.Grado}" />
+
+        <Button Text="Guardar" Command="{Binding GuardarEstudianteCommand}" />
     </VerticalStackLayout>
 </ContentPage>
