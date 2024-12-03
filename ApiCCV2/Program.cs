@@ -21,6 +21,13 @@ builder.WebHost.ConfigureKestrel(options =>
     options.ListenAnyIP(7129); // HTTPS
     options.ListenAnyIP(5057); // HTTP
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+});
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
@@ -41,9 +48,15 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
+app.MapControllers();
+app.Run("http://0.0.0.0:5057");
 app.UseAuthorization();
-
+app.UseCors(builder =>
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader());
 app.MapControllers();
 
 app.Run();
