@@ -7,19 +7,16 @@
     <ScrollView>
         <Grid RowDefinitions="Auto,Auto,*" RowSpacing="15" Margin="15">
 
-            <!-- Botón para nuevo empleado -->
             <Button 
                 Grid.Row="0" 
                 Text="Nuevo Empleado" 
                 Command="{Binding CrearCommand}" />
 
-            <!-- Encabezado de la lista -->
             <Label 
                 Grid.Row="1" 
                 Text="Lista de empleados" 
                 FontSize="Subtitle" />
 
-            <!-- Scroll interno para la lista -->
             <ScrollView Grid.Row="2">
                 <CollectionView ItemsSource="{Binding ListaEstudiante}">
                     <CollectionView.ItemsLayout>
@@ -28,7 +25,6 @@
                             Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
 
-                    <!-- Plantilla de datos -->
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:EstudianteDto">
                             <Border Padding="10,5" HorizontalOptions="FillAndExpand">
@@ -109,7 +105,7 @@
                                         Grid.Column="0" 
                                         Padding="0,15,10,5" 
                                         Text="Editar" 
-                                        TextColor="Blue">
+                                        TextColor="Black">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer 
                                                 Command="{Binding BindingContext.EditarCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" 
@@ -122,7 +118,7 @@
                                         Grid.Column="1" 
                                         Padding="10,15,0,5" 
                                         Text="Eliminar" 
-                                        TextColor="Red" 
+                                        TextColor="Black" 
                                         HorizontalOptions="End">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer 
