@@ -16,7 +16,11 @@ builder.Services.AddScoped<IActividad, ActividadRepository>();
 builder.Services.AddScoped<IActividadProfesor, ActividadProfesorRepository>();
 builder.Services.AddScoped<IActividadEstudiante, ActividadEstudianteRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(7129); // HTTPS
+    options.ListenAnyIP(5057); // HTTP
+});
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
