@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CCVProyecto2P2.ViewLogin.LoginView"
+             Title="LoginView">
+    <Grid Background="#e6e2dc">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="1" VerticalOptions="Center">
+            <Frame HeightRequest="80" WidthRequest="80" BackgroundColor="White" CornerRadius="40" HorizontalOptions="Center" Margin="0,0,0,20" HasShadow="False">
+                <Image Source="logo.png" Aspect="AspectFill" />
+            </Frame>
+            <Label Text="Login" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20" TextColor="Black" FontFamily="TheStudentsTeacherFont"/>
+            <Entry Placeholder="Usuario" HeightRequest="40" Margin="0,0,0,10" BackgroundColor="White" FontFamily="TheStudentsTeacherFont"/>
+            <Entry Placeholder="Contraseña" IsPassword="True" HeightRequest="40" Margin="0,0,0,10" BackgroundColor="White" FontFamily="TheStudentsTeacherFont" />
+            <Button Text="Ingresar" BackgroundColor="Black" FontFamily="TheStudentsTeacherFont" TextColor="White" FontSize="16" HeightRequest="40" Clicked="Ingresar_Clicked"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
