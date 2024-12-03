@@ -13,8 +13,8 @@
                 <Image Source="logo.png" Aspect="AspectFill" />
             </Frame>
             <Label Text="Login" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20" TextColor="Black" FontFamily="TheStudentsTeacherFont"/>
-            <Entry Placeholder="Usuario" HeightRequest="40" Margin="0,0,0,10" BackgroundColor="White" FontFamily="TheStudentsTeacherFont"/>
-            <Entry Placeholder="Contraseña" IsPassword="True" HeightRequest="40" Margin="0,0,0,10" BackgroundColor="White" FontFamily="TheStudentsTeacherFont" />
+            <Entry x:Name="UsuarioEntry" Placeholder="Usuario" HeightRequest="40" Margin="0,0,0,10" BackgroundColor="White" FontFamily="TheStudentsTeacherFont" />
+            <Entry x:Name="ContraseniaEntry" Placeholder="Contraseña" IsPassword="True" HeightRequest="40" Margin="0,0,0,10" BackgroundColor="White" FontFamily="TheStudentsTeacherFont" />
             <Button Text="Ingresar" BackgroundColor="Black" FontFamily="TheStudentsTeacherFont" TextColor="White" FontSize="16" HeightRequest="40" Clicked="Ingresar_Clicked"/>
         </StackLayout>
     </Grid>
