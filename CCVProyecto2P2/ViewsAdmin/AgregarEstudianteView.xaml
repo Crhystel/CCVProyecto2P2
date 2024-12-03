@@ -9,18 +9,18 @@
         <vm:EstudianteViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Label Text="Agregar Estudiante" FontSize="24" HorizontalOptions="Center" />
+    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#e6e2dc">
+        <Label Text="Agregar Estudiante" FontSize="24" HorizontalOptions="Center" TextColor="Black" FontFamily="TheStudentsTeacherFont"/>
 
-        <Entry Placeholder="Nombre" Text="{Binding Estudiante.Nombre}" />
-        <Entry Placeholder="Cédula" Text="{Binding Estudiante.Cedula}" Keyboard="Numeric" />
-        <Entry Placeholder="Nombre de Usuario" Text="{Binding Estudiante.NombreUsuario}" />
-        <Entry Placeholder="Contraseña" Text="{Binding Estudiante.Contrasenia}" IsPassword="True" />
-        <Entry Placeholder="Edad" Text="{Binding Estudiante.Edad}" Keyboard="Numeric" />
+        <Entry Placeholder="Nombre" Text="{Binding Estudiante.Nombre}" TextColor="Black" FontFamily="TheStudentsTeacherFont" BackgroundColor="White"/>
+        <Entry Placeholder="Cédula" Text="{Binding Estudiante.Cedula}" Keyboard="Numeric" TextColor="Black" FontFamily="TheStudentsTeacherFont" BackgroundColor="White"/>
+        <Entry Placeholder="Nombre de Usuario" Text="{Binding Estudiante.NombreUsuario}" TextColor="Black" FontFamily="TheStudentsTeacherFont" BackgroundColor="White"/>
+        <Entry Placeholder="Contraseña" Text="{Binding Estudiante.Contrasenia}" IsPassword="True" TextColor="Black" FontFamily="TheStudentsTeacherFont" BackgroundColor="White"/>
+        <Entry Placeholder="Edad" Text="{Binding Estudiante.Edad}" Keyboard="Numeric" TextColor="Black" FontFamily="TheStudentsTeacherFont" BackgroundColor="White"/>
 
-        <Picker Title="Rol" ItemsSource="{Binding Roles}" SelectedItem="{Binding Estudiante.Rol}" />
-        <Picker Title="Grado" ItemsSource="{Binding Grados}" SelectedItem="{Binding Estudiante.Grado}" />
+        <Picker Title="Rol" ItemsSource="{Binding Roles}" SelectedItem="{Binding Estudiante.Rol}" TextColor="Black" FontFamily="TheStudentsTeacherFont" BackgroundColor="White"/>
+        <Picker Title="Grado" ItemsSource="{Binding Grados}" SelectedItem="{Binding Estudiante.Grado}" TextColor="Black" FontFamily="TheStudentsTeacherFont" BackgroundColor="White"/>
 
-        <Button Text="Guardar" Command="{Binding GuardarEstudianteCommand}" />
+        <Button Text="Guardar" Command="{Binding GuardarEstudianteCommand}" TextColor="White" FontFamily="TheStudentsTeacherFont" BackgroundColor="Black"/>
     </VerticalStackLayout>
 </ContentPage>

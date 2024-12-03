@@ -49,7 +49,7 @@
                   HasShadow="True">
                     <VerticalStackLayout>
                         <Image Source="curso.jpeg" Aspect="AspectFit" HeightRequest="100" />
-                        <Label Text="Agregar Estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
+                        <Label Text="Agregar Curso" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
                         <Button Text ="Ingresar"  BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"
                                 Clicked="CrearCurso_Clicked"></Button>
                     </VerticalStackLayout>
