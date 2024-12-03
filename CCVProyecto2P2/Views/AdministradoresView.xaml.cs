@@ -14,7 +14,7 @@ public partial class AdministradoresView : ContentPage
     }
     public void CrearEstudiante_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new AgregarEstudianteView());
+        Navigation.PushAsync(new MainPage());
     }
     public void CrearCurso_Clicked(object sender, EventArgs e)
     {

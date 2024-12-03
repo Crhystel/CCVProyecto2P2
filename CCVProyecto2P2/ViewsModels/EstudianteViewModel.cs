@@ -1,93 +1,131 @@
-﻿using CCVProyecto2P2.Models;
-using CCVProyecto2P2.Services.EstudianteService;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using CCVProyecto2P2.DataAccess;
+using CCVProyecto2P2.Dto;
+using CCVProyecto2P2.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.EntityFrameworkCore;
+using CCVProyecto2P2.Utilidades;
 
 namespace CCVProyecto2P2.ViewsModels
 {
-    public class EstudianteViewModel : INotifyPropertyChanged
+    public partial class EstudianteViewModel : ObservableObject, IQueryAttributable
     {
-        private readonly IEstudiante _estudianteService;
+        private readonly EstudianteDBContext _dbContext;
 
-        private Estudiante _estudiante;
-        public Estudiante Estudiante
+
+        [ObservableProperty]
+        private EstudianteDto estudianteDto = new();
+
+        [ObservableProperty]
+        private string tituloPagina;
+
+        private int IdEstudiante;
+
+        [ObservableProperty]
+        private bool loadingEstudiante = false;
+
+        public EstudianteViewModel(EstudianteDBContext context)
         {
-            get => _estudiante;
-            set
-            {
-                _estudiante = value;
-                OnPropertyChanged();
-            }
+            _dbContext = context;
         }
         public EstudianteViewModel()
         {
-            
+
         }
 
-        public ObservableCollection<Estudiante> Estudiantes { get; set; } = new ObservableCollection<Estudiante>();
-        public ObservableCollection<RolEnum> Roles { get; } = new ObservableCollection<RolEnum>(Enum.GetValues<RolEnum>());
-        public ObservableCollection<GradoEnum> Grados { get; } = new ObservableCollection<GradoEnum>(Enum.GetValues<GradoEnum>());
-
-        public ICommand GuardarEstudianteCommand { get; }
-        public ICommand CargarEstudiantesCommand { get; }
-        public ICommand EliminarEstudianteCommand { get; }
-
-        public EstudianteViewModel(IEstudiante estudianteService)
+        public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            _estudianteService = estudianteService;
-            Estudiante = new Estudiante();
+            var id = int.Parse(query["id"].ToString());
+            IdEstudiante = id;
 
-            GuardarEstudianteCommand = new Command(async () => await GuardarEstudiante());
-            CargarEstudiantesCommand = new Command(async () => await CargarEstudiantes());
-            EliminarEstudianteCommand = new Command<int>(async id => await EliminarEstudiante(id));
-        }
-
-        private async Task GuardarEstudiante()
-        {
-            var success = await _estudianteService.AddUpdateEstudianteAsync(Estudiante);
-            if (success)
+            if (IdEstudiante == 0)
             {
-                await App.Current.MainPage.DisplayAlert("Éxito", "Estudiante guardado correctamente", "OK");
-                await CargarEstudiantes(); 
+                TituloPagina = "Nuevo Estudiante";
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Error", "No se pudo guardar el estudiante", "OK");
+                TituloPagina = "Editar Estudiante";
+                LoadingEstudiante = true;
+
+                var encontrado = await _dbContext.Estudiante.FirstOrDefaultAsync(c => c.Id == id);
+                if (encontrado != null)
+                {
+                    EstudianteDto = new EstudianteDto
+                    {
+                        Id = encontrado.Id,
+                        Edad = encontrado.Edad,
+                        Cedula = encontrado.Cedula,
+                        Contrasenia = encontrado.Contrasenia,
+                        Nombre = encontrado.Nombre,
+                        NombreUsuario = encontrado.NombreUsuario
+                    };
+                }
+
+                MainThread.BeginInvokeOnMainThread(() => { LoadingEstudiante = false; });
             }
         }
 
-        private async Task CargarEstudiantes()
+        [RelayCommand]
+        public async Task Guardar()
         {
-            var estudiantes = await _estudianteService.GetEstudiantesAsync();
-            Estudiantes.Clear();
-            foreach (var estudiante in estudiantes)
-            {
-                Estudiantes.Add(estudiante);
-            }
-        }
+            LoadingEstudiante = true;
 
-        private async Task EliminarEstudiante(int id)
-        {
-            var success = await _estudianteService.DeleteEstudianteAsync(id);
-            if (success)
-            {
-                await App.Current.MainPage.DisplayAlert("Éxito", "Estudiante eliminado correctamente", "OK");
-                await CargarEstudiantes(); // Actualizar lista
-            }
-            else
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "No se pudo eliminar el estudiante", "OK");
-            }
-        }
+            var mensaje = new EstudianteCuerpo();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            await Task.Run(async () =>
+            {
+                if (IdEstudiante == 0)
+                {
+                    var tbEstudiante = new Estudiante
+                    {
+                        Nombre = EstudianteDto.Nombre,
+                        NombreUsuario = EstudianteDto.NombreUsuario,
+                        Contrasenia = EstudianteDto.Contrasenia,
+                        Edad = EstudianteDto.Edad,
+                        Cedula = EstudianteDto.Cedula
+                    };
 
+                    _dbContext.Estudiante.Add(tbEstudiante);
+                    await _dbContext.SaveChangesAsync();
+
+                    EstudianteDto.Id = tbEstudiante.Id;
+
+                    mensaje = new EstudianteCuerpo
+                    {
+                        EsCrear = true,
+                        EstudianteDto = EstudianteDto
+                    };
+                }
+                else
+                {
+                    var encontrado = await _dbContext.Estudiante.FirstOrDefaultAsync(c => c.Id == IdEstudiante);
+
+                    if (encontrado != null)
+                    {
+                        encontrado.Nombre = EstudianteDto.Nombre;
+                        encontrado.NombreUsuario = EstudianteDto.NombreUsuario;
+                        encontrado.Contrasenia = EstudianteDto.Contrasenia;
+                        encontrado.Edad = EstudianteDto.Edad;
+                        encontrado.Cedula = EstudianteDto.Cedula;
+
+                        await _dbContext.SaveChangesAsync();
+
+                        mensaje = new EstudianteCuerpo
+                        {
+                            EsCrear = false,
+                            EstudianteDto = EstudianteDto
+                        };
+                    }
+                }
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    LoadingEstudiante = false;
+                    WeakReferenceMessenger.Default.Send(new EstudianteMensajeria(mensaje));
+                    Shell.Current.Navigation.PopAsync();
+                });
+            });
+        }
     }
 }
