@@ -3,8 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.Views.ProfesoresView"
              Title="ProfesoresView">
-    <VerticalStackLayout Background="#e6e2dc">
-        <!--  <ListView ItemsSource="Aqui le hacen binding a los cursos "
+    <ScrollView>
+        <VerticalStackLayout>
+            
+            <Button Text="Crear una nueva Actividad" 
+                    Clicked="CrearActividad_Clicked" 
+                    BackgroundColor="Black" 
+                    TextColor="White" />
+
+            
+            <Label Text="Actividades" 
+                   FontSize="40" 
+                   HorizontalTextAlignment="Center" />
+
+            
+            <CollectionView x:Name="ActividadesCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Titulo}" 
+                                   FontSize="20" 
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding Descripcion}" />
+                            <Label Text="{Binding FechaEntrega, StringFormat='Fecha de Entrega: {0:D}'}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+    <!--<VerticalStackLayout Background="#e6e2dc">
+          <ListView ItemsSource="Aqui le hacen binding a los cursos "
                   ItemSelected="OnItemSelected"> 
 
             <ListView.ItemTemplate>
@@ -31,7 +60,7 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>-->
+        </ListView>
         <Button Text="Actividades" Clicked="CrearActividad_Clicked" BackgroundColor="Black" TextColor="White"></Button>
-    </VerticalStackLayout>
+    </VerticalStackLayout> -->
 </ContentPage>
