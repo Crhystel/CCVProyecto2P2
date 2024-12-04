@@ -6,38 +6,29 @@
     <ScrollView Background="#e6e2dc">
         <VerticalStackLayout>
             <Label Text="ACTIVIDAD"
-         FontSize="40"
-         FontAttributes="Bold"
-         FontFamily="TheStudentsTeacherFont"
-         HorizontalTextAlignment="Center"
-         TextColor="#444444"
-         Margin="0,10" />
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   FontFamily="TheStudentsTeacherFont"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#444444"
+                   Margin="0,10" />
             <Label Text="NOMBRE ACTIVIDAD"
-                FontFamily="TheStudentsTeacherFont"
-                FontSize="20"
-                HorizontalTextAlignment="Start"
-                TextColor="#444444"
-                Margin="4,5,10,20" />
-            <Editor x:Name="editorNombre"
-                 BackgroundColor="White"
-                 
-                 />
-            <!-- Para funcionalidad:
-         <TextChanged="OnEditorTextChanged"
-         Completed="OnEditorCompleted" -->
+                   FontFamily="TheStudentsTeacherFont"
+                   FontSize="20"
+                   HorizontalTextAlignment="Start"
+                   TextColor="#444444"
+                   Margin="20,5,10,20" />
+            <Editor x:Name="editorNombre" BackgroundColor="White" Margin="20,0,20,0"/>
             <Label Text=""></Label>
             <Label Text="DESCRIPCION"
-         FontFamily="TheStudentsTeacherFont"
-         FontSize="20"
-         HorizontalTextAlignment="Start"
-         TextColor="#444444"
-         Margin="4,5,10,20" />
+                   FontFamily="TheStudentsTeacherFont"
+                   FontSize="20"
+                   HorizontalTextAlignment="Start"
+                   TextColor="#444444"
+                   Margin="20,5,10,20" />
             <Editor x:Name="editorDescripción"
                  BackgroundColor="White"
-                 HeightRequest="200" />
-            <!-- Para funcionalidad:
-         <TextChanged="OnEditorTextChanged"
-         Completed="OnEditorCompleted" -->
+                 HeightRequest="200" Margin="20,0,20,10"/>
             <Grid ColumnSpacing="10" RowSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -48,44 +39,35 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <VerticalStackLayout Grid.Column="0">
-                    <Label Text="Fecha de Inicio"
-                FontFamily="TheStudentsTeacherFont"
-                FontSize="18"
-                HorizontalTextAlignment="Center"
-                TextColor="#444444"
-                Margin="0,5,0,20" />
+                    <Label Text="Fecha de Inicio" 
+                           FontFamily="TheStudentsTeacherFont" 
+                           FontSize="18" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="#444444" 
+                           Margin="0,5,0,20" />
                     <DatePicker x:Name="FechaInicio"
-                     Format="D"
-                     MinimumDate="2000-01-01"
-                     MaximumDate="2100-12-31"
-                     BackgroundColor="Black"
-                     HorizontalOptions="Center"
-                     />
+                                Format="D"
+                                MaximumDate="2100-12-31"
+                                BackgroundColor="Black"
+                                HorizontalOptions="Center"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="1">
-                    <Label Text="Fecha de Entrega"
-                        FontFamily="TheStudentsTeacherFont"
-                        FontSize="18"
-                        HorizontalTextAlignment="Center"
-                        TextColor="#444444"
-                        Margin="0,5,0,20" />
-
+                    <Label Text="Fecha de Entrega" 
+                           FontFamily="TheStudentsTeacherFont"
+                           FontSize="18"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#444444"
+                           Margin="0,5,0,20" />
                     <DatePicker x:Name="FechaEntrega"
-                             Format="D"
-                             MinimumDate="2000-01-01"
-                             MaximumDate="2100-12-31"
-                             BackgroundColor="Black"
-                             HorizontalOptions="Center"
-                     />
+                                Format="D"
+                                MinimumDate="2000-01-01"
+                                MaximumDate="2100-12-31"
+                                BackgroundColor="Black"
+                                HorizontalOptions="Center"/>
                 </VerticalStackLayout>
-
             </Grid>
-            <Button Text="AGREGAR ARCHIVO" BackgroundColor="Black" TextColor="White">
-            </Button>
-            <Label Text=""> </Label>
-            <Button Text="Guardar" BackgroundColor="Black" TextColor="White" Clicked="OnGuardarClicked">
-            </Button>
-
+            <Button Text="AGREGAR ARCHIVO" BackgroundColor="Black" TextColor="White" Margin="30,10,30,20"/>
+            <Button Text="Guardar" BackgroundColor="Black" TextColor="White" Clicked="OnGuardarClicked" Margin="30,0,30,10"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
