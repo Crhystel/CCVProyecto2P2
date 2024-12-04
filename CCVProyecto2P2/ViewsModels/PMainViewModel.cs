@@ -17,16 +17,16 @@ namespace CCVProyecto2P2.ViewsModels
 {
     public partial class PMainViewModel:ObservableObject
     {
-        private readonly DBContext _dbContext;
+        private readonly DbbContext _dbContext;
         [ObservableProperty]
         private ObservableCollection<ProfesorDto> listaProfesor = new ObservableCollection<ProfesorDto>();
-        public PMainViewModel(DBContext context)
+        public PMainViewModel(DbbContext context)
         {
             _dbContext = context;
             MainThread.BeginInvokeOnMainThread(new Action(async () => await Obtener()));
-            WeakReferenceMessenger.Default.Register<Mensajeria>(this, (r, m) =>
+            WeakReferenceMessenger.Default.Register<MensajeriaP>(this, (r, y) =>
             {
-                ProfesorMensajeRecibido(m.Value);
+                ProfesorMensajeRecibido(y.Value);
 
             });
         }
@@ -50,7 +50,7 @@ namespace CCVProyecto2P2.ViewsModels
                 }
             }
         }
-        private void ProfesorMensajeRecibido(Cuerpo profesorCuerpo)
+        private void ProfesorMensajeRecibido(CuerpoP profesorCuerpo)
         {
             var profesorDto = profesorCuerpo.ProfesorDto;
             if (profesorCuerpo.EsCrear)
@@ -84,15 +84,24 @@ namespace CCVProyecto2P2.ViewsModels
         [RelayCommand]
         private async Task Eliminar(ProfesorDto profesorDto)
         {
-            bool anwser = await Shell.Current.DisplayAlert("Mensaje", "Desea eliminar al estudiante?", "Si", "No");
-            if (anwser)
+
+            try
             {
-                var encontrado = await _dbContext.Profesor
-                    .FirstAsync(c => c.Id == profesorDto.Id);
-                _dbContext.Profesor.Remove(encontrado);
-                await _dbContext.SaveChangesAsync();
-                ListaProfesor.Remove(profesorDto);
+                bool anwser = await Shell.Current.DisplayAlert("Mensaje", "Desea eliminar al estudiante?", "Si", "No");
+                if (anwser)
+                {
+                    var encontrado = await _dbContext.Profesor
+                        .FirstAsync(c => c.Id == profesorDto.Id);
+                    _dbContext.Profesor.Remove(encontrado);
+                    await _dbContext.SaveChangesAsync();
+                    ListaProfesor.Remove(profesorDto);
+                }// 
             }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+            }
+            
         }
     }
 }

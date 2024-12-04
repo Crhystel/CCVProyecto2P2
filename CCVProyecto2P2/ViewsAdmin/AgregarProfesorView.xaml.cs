@@ -8,6 +8,6 @@ public partial class AgregarProfesorView : ContentPage
     public AgregarProfesorView()
     {
         InitializeComponent();
-        BindingContext = new ProfesorViewModel(new DBContext());
+        BindingContext = new ProfesorViewModel(new DbbContext());
     }
 }
