@@ -8,24 +8,25 @@
     </ContentPage.BindingContext>
     <ScrollView> 
     <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#e6e2dc">
-        <ActivityIndicator IsVisible="{Binding LoadingEstudiante}"
+            <Label Text="Ingresar datos:" FontSize="30" FontAttributes="Bold"></Label>
+            <ActivityIndicator IsVisible="{Binding LoadingEstudiante}"
                            IsRunning="{Binding LoadingEstudiante}"
                            Color="LimeGreen"
                            HeightRequest="30"/>
         <Label Text="Cédula"/>
-        <Entry Text="{Binding EstudianteDto.Cedula}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding EstudianteDto.Cedula}" Margin="30,0,30,10"/>
         <Label Text="Nombre Completo"/>
-        <Entry Text="{Binding EstudianteDto.Nombre}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding EstudianteDto.Nombre}" Margin="30,0,30,10"/>
         <Label Text="Nombre de usuario"/>
-        <Entry Text="{Binding EstudianteDto.NombreUsuario}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding EstudianteDto.NombreUsuario}" Margin="30,0,30,10"/>
         <Label Text="Contraseña"/>
-        <Entry Text="{Binding EstudianteDto.Contrasenia}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding EstudianteDto.Contrasenia}" Margin="30,0,30,10"/>
         <Label Text="Edad"/>
-        <Entry Text="{Binding EstudianteDto.Edad}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding EstudianteDto.Edad}" Margin="30,0,30,10"/>
         <Label Text="Grado"/>
         <Picker ItemsSource="{Binding GradosDisponibles}" 
             SelectedItem="{Binding EstudianteDto.Grado}"
-            Margin="0,0,0,10" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"/>
+            Margin="70,0,70,0" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"/>
         <Button Text="Crear" Command="{Binding GuardarCommand}" BackgroundColor="Black" TextColor="White" Margin="10,0,10,0"/>
     </VerticalStackLayout>
     </ScrollView>

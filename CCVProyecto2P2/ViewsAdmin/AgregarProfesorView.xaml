@@ -15,15 +15,15 @@
                        Color="LimeGreen"
                        HeightRequest="30"/>
         <Label Text="Cédula"/>
-        <Entry Text="{Binding ProfesorDto.Cedula}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding ProfesorDto.Cedula}" Margin="30,0,30,10"/>
         <Label Text="Nombre Completo"/>
-        <Entry Text="{Binding ProfesorDto.Nombre}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding ProfesorDto.Nombre}" Margin="30,0,30,10"/>
         <Label Text="Nombre de usuario"/>
-        <Entry Text="{Binding ProfesorDto.NombreUsuario}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding ProfesorDto.NombreUsuario}" Margin="30,0,30,10"/>
         <Label Text="Contraseña"/>
-        <Entry Text="{Binding ProfesorDto.Contrasenia}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding ProfesorDto.Contrasenia}" Margin="30,0,30,10"/>
         <Label Text="Edad"/>
-        <Entry Text="{Binding ProfesorDto.Edad}" Margin="0,0,0,10"/>
+        <Entry Text="{Binding ProfesorDto.Edad}" Margin="30,0,30,10"/>
         <Label Text="Materia"/>
         <Picker ItemsSource="{Binding MateriasDisponibles}" 
                 SelectedItem="{Binding ProfesorDto.Materia}"

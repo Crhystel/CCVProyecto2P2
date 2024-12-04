@@ -4,19 +4,19 @@
              x:Class="CCVProyecto2P2.Views.ProfesoresView">
     <ScrollView>
         <VerticalStackLayout>
-            
+
             <Button Text="Crear una nueva Actividad" 
                     Clicked="CrearActividad_Clicked" 
                     BackgroundColor="Black" 
                     TextColor="White" 
                     FontFamily="TheStudentsTeacherFont"/>
 
-            
+
             <Label Text="Actividades" 
                    FontSize="40" 
                    HorizontalTextAlignment="Center" />
 
-            
+
             <CollectionView x:Name="ActividadesCollection">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -32,35 +32,4 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
-    <!--<VerticalStackLayout Background="#e6e2dc">
-          <ListView ItemsSource="Aqui le hacen binding a los cursos "
-                  ItemSelected="OnItemSelected"> 
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1"
-                           Text="Binding"
-                           FontAttributes="Bold" />
-                            <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="Binding"
-                           FontAttributes="Italic"
-                           VerticalOptions="End" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button Text="Actividades" Clicked="CrearActividad_Clicked" BackgroundColor="Black" TextColor="White"></Button>
-    </VerticalStackLayout> -->
 </ContentPage>
