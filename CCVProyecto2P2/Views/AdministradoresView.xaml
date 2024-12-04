@@ -2,16 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.Views.AdministradoresView"
-             Title="AdministradoresView">
+             Title="Administradores">
     <ScrollView Background="#e6e2dc">
         <VerticalStackLayout>
+            <Image Source="escuela.jpg"
+                   Aspect="AspectFill"
+                   HeightRequest="200"
+                   Margin="0,10,0,10" />
+            <Label Text="Escuelita Gotitas del Saber"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   FontFamily="TheStudentsTeacherFont"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#444444"
+                   Margin="0,10" />
             <Label Text="Bienvenido"
-              FontSize="40"
-              FontAttributes="Bold"
-              FontFamily="TheStudentsTeacherFont"
-              HorizontalTextAlignment="Center"
-              TextColor="#444444"
-              Margin="0,10" />
+                   FontFamily="TheStudentsTeacherFont"
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#444444"
+                   Margin="0,5,0,20" />
             <Grid ColumnSpacing="10" RowSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -21,48 +31,36 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Frame Grid.Row="0" Grid.Column="0"
-                  CornerRadius="10"
-                  BackgroundColor="White"
-                  HasShadow="True">
+                <Frame Grid.Row="0" Grid.Column="0" CornerRadius="10" BackgroundColor="White" HasShadow="True" Margin="10,0,0,0">
                     <VerticalStackLayout>
                         <Image Source="profesor2.jpg" Aspect="AspectFit" HeightRequest="100" />
-                        <Label Text="Agregar Profesor" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont"/>
+                        <Label Text="Agregar Profesor" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" Margin="0,10,0,0"/>
                         <Button Text ="Ingresar" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont" 
-                        Clicked="CrearProfesor_Clicked"></Button>
+                        Clicked="CrearProfesor_Clicked" Margin="20,10,10,10"></Button>
                     </VerticalStackLayout>
                 </Frame>
-                <Frame Grid.Row="0" Grid.Column="1"
-                  CornerRadius="10"
-                  BackgroundColor="White"
-                  HasShadow="True">
+                <Frame Grid.Row="0" Grid.Column="1" CornerRadius="10" BackgroundColor="White" HasShadow="True" Margin="0,0,10,0">
                     <VerticalStackLayout>
                         <Image Source="estudiante2.png" Aspect="AspectFit" HeightRequest="100" />
-                        <Label Text="Agregar Estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
+                        <Label Text="Agregar Estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" Margin="0,10,0,0"/>
                         <Button Text ="Ingresar" BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"
-                         Clicked="CrearEstudiante_Clicked"></Button>
+                         Clicked="CrearEstudiante_Clicked" Margin="20,10,10,10"></Button>
                     </VerticalStackLayout>
                 </Frame>
-                <Frame Grid.Row="1" Grid.Column="0"
-                  CornerRadius="10"
-                  BackgroundColor="White"
-                  HasShadow="True">
+                <Frame Grid.Row="1" Grid.Column="0" CornerRadius="10" BackgroundColor="White" HasShadow="True" Margin="10,0,0,0">
                     <VerticalStackLayout>
                         <Image Source="curso.jpeg" Aspect="AspectFit" HeightRequest="100" />
-                        <Label Text="Agregar Curso" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
+                        <Label Text="Agregar Curso" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" Margin="0,10,0,0"/>
                         <Button Text ="Ingresar"  BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"
-                                Clicked="CrearCurso_Clicked"></Button>
+                                Clicked="CrearCurso_Clicked" Margin="20,10,10,10"></Button>
                     </VerticalStackLayout>
                 </Frame>
-                <Frame Grid.Row="1" Grid.Column="1"
-                       CornerRadius="10"
-                       BackgroundColor="White"
-                       HasShadow="True">
+                <Frame Grid.Row="1" Grid.Column="1" CornerRadius="10" BackgroundColor="White" HasShadow="True" Margin="0,0,10,0">
                     <VerticalStackLayout>
                         <Image Source="curso2.jpg" Aspect="AspectFit" HeightRequest="100" />
-                        <Label Text="Unir estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" />
+                        <Label Text="Unir estudiante" TextColor="Black" HorizontalOptions="Center" FontFamily="TheStudentsTeacherFont" Margin="0,10,0,0"/>
                         <Button Text ="Ingresar"  BackgroundColor="Black" TextColor="White" FontFamily="TheStudentsTeacherFont"
-                                Clicked="UnirEstudiante_Clicked"></Button>
+                                Clicked="UnirEstudiante_Clicked" Margin="20,10,10,10"></Button>
                     </VerticalStackLayout>
                 </Frame>
             </Grid>
