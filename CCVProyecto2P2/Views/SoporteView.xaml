@@ -4,9 +4,8 @@
              x:Class="CCVProyecto2P2.Views.SoporteView"
              Background="#e6e2dc">
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
-        <!-- Título -->
         <Label Text="Contáctanos"
-           FontSize="22"
+           FontSize="45"
            FontAttributes="Bold"
            HorizontalOptions="Center"
            Margin="0,0,0,20"
@@ -22,7 +21,7 @@
                 </Image>
                 <Label Text="WhatsApp"
                    VerticalOptions="Center"
-                   FontSize="16"
+                   FontSize="36"
                    TextColor="Black" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
@@ -33,12 +32,12 @@
                 </Image>
                 <Label Text="Instagram"
                    VerticalOptions="Center"
-                   FontSize="16"
+                   FontSize="36"
                    TextColor="Black" />
             </StackLayout>
         </StackLayout>
         <Label Text="¡Síguenos para más información!"
-           FontSize="14"
+           FontSize="24"
            HorizontalOptions="Center"
            Margin="0,20,0,0"
            TextColor="Gray" />
