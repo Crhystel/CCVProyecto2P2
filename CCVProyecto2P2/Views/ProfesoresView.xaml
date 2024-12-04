@@ -8,7 +8,8 @@
             <Button Text="Crear una nueva Actividad" 
                     Clicked="CrearActividad_Clicked" 
                     BackgroundColor="Black" 
-                    TextColor="White" />
+                    TextColor="White" 
+                    FontFamily="TheStudentsTeacherFont"/>
 
             
             <Label Text="Actividades" 

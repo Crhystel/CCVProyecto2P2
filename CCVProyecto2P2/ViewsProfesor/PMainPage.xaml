@@ -7,10 +7,13 @@
         <Grid RowDefinitions="Auto,Auto,*" RowSpacing="15" Margin="15">
 
             <Button 
-             Grid.Row="0" 
-             Text="Nuevo Profesor" 
-             Command="{Binding CrearCommand}"
-             Margin="20"/>
+                Grid.Row="0" 
+                Text="Nuevo Profesor" 
+                Command="{Binding CrearCommand}"
+                Margin="20"
+                FontFamily="TheStudentsTeacherFont"
+                BackgroundColor="Black"
+                TextColor="White"/>
 
             <Label 
              Grid.Row="1" 

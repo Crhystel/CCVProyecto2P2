@@ -10,6 +10,9 @@
             <Button 
                 Grid.Row="0" 
                 Text="Nuevo Estudiante" 
+                BackgroundColor="Black"
+                TextColor="White"
+                
                 Command="{Binding CrearCommand}" />
 
             <Label 
