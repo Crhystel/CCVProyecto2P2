@@ -127,16 +127,12 @@
                                              CommandParameter="{Binding}" />
                                         </Label.GestureRecognizers>
                                     </Label>
-
                                 </Grid>
-
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-
                 </CollectionView>
             </ScrollView>
-
         </Grid>
     </ScrollView>
 </ContentPage>

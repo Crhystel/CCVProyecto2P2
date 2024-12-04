@@ -2,9 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.ViewsAdmin.AgregarEstudianteView"
-             xmlns:viewmodel="clr-namespace:CCVProyecto2P2.ViewsModels"
-             Title="{Binding TituloPagina}">
-
+             xmlns:viewmodel="clr-namespace:CCVProyecto2P2.ViewsModels">
     <ContentPage.BindingContext>
         <viewmodel:EstudianteViewModel />
     </ContentPage.BindingContext>
