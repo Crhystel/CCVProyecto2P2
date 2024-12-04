@@ -5,8 +5,19 @@
              Title="Estudiantes">
     <ScrollView>
         <StackLayout>
-            <Label Text="Actividades" FontSize="40" HorizontalTextAlignment="Center" />
-            <CollectionView x:Name="ActividadesCollection">
+            <Image Source="escuela.jpg"
+                   Aspect="AspectFill"
+                   HeightRequest="200"
+                   Margin="0,10,0,10" />
+            <Label Text="Escuelita Gotitas del Saber"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   FontFamily="TheStudentsTeacherFont"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#444444"
+                   Margin="0,10" />
+            <Label Text="Actividades" FontSize="30" HorizontalTextAlignment="Center" />
+            <CollectionView x:Name="ActividadesCollection" Margin="10">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10">
