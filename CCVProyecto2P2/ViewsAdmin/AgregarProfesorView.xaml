@@ -7,8 +7,8 @@
     <ContentPage.BindingContext>
         <viewmodel:ProfesorViewModel />
     </ContentPage.BindingContext>
-
-    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#e6e2dc">
+    <ScrollView> 
+           <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#e6e2dc">
         <ActivityIndicator IsVisible="{Binding LoadingProfesor}"
                        IsRunning="{Binding LoadingProfesor}"
                        Color="LimeGreen"
@@ -25,8 +25,13 @@
         <Entry Text="{Binding ProfesorDto.Edad}" Margin="0,0,0,10"/>
         <Label Text="Materia"/>
         <Picker ItemsSource="{Binding MateriasDisponibles}" 
-        SelectedItem="{Binding ProfesorDto.Materia}"
-        Margin="0,0,0,10"/>
-        <Button Text="Crear" Command="{Binding GuardarCommand}" BackgroundColor="LimeGreen"/>
+                SelectedItem="{Binding ProfesorDto.Materia}"
+                Margin="0,0,0,10"
+                TextColor="White"
+                BackgroundColor="Black"
+                FontFamily="TheStudentsTeacherFont"/>
+        <Button Text="Crear" Command="{Binding GuardarCommand}" BackgroundColor="Black" FontFamily="TheStudentsTeacherFont" TextColor="White"/>
     </VerticalStackLayout>
+    </ScrollView>
+ 
 </ContentPage>

@@ -9,13 +9,12 @@
 
     <FlyoutItem Title="Inicio">
         <ShellContent
-        Title="Home"
         ContentTemplate="{DataTemplate local:InicioView}"
         Route="InicioView" />
     </FlyoutItem>
     <FlyoutItem Title="Soporte">
         <ShellContent
-        Title="Home"
+        
         ContentTemplate="{DataTemplate local:SoporteView}"
         Route="SoporteView" />
     </FlyoutItem>
