@@ -10,7 +10,7 @@ namespace CCVProyecto2P2
         public EMainPage()
         {
             InitializeComponent();
-            BindingContext = new EMainViewModel(new DataAccess.DBContext());
+            BindingContext = new EMainViewModel(new DataAccess.DbbContext());
         }
 
 

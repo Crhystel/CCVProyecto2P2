@@ -7,6 +7,6 @@ public partial class PMainPage : ContentPage
     public PMainPage()
     {
         InitializeComponent();
-        BindingContext = new PMainViewModel(new DataAccess.DBContext());
+        BindingContext = new PMainViewModel(new DataAccess.DbbContext());
     }
 }

@@ -11,7 +11,7 @@ namespace CCVProyecto2P2.ViewsModels
 {
     public partial class ProfesorViewModel : ObservableObject, IQueryAttributable
     {
-        private readonly DBContext _dbContext;
+        private readonly DbbContext _dbContext;
 
         public List<MateriaEnum> MateriasDisponibles { get; } = Enum.GetValues(typeof(MateriaEnum)).Cast<MateriaEnum>().ToList();
 
@@ -26,7 +26,7 @@ namespace CCVProyecto2P2.ViewsModels
         [ObservableProperty]
         private bool loadingProfesor = false;
 
-        public ProfesorViewModel(DBContext context)
+        public ProfesorViewModel(DbbContext context)
         {
             _dbContext = context;
         }
@@ -73,7 +73,7 @@ namespace CCVProyecto2P2.ViewsModels
         {
             LoadingProfesor = true;
 
-            var mensaje = new Cuerpo();
+            var mensaje = new CuerpoP();
 
             await Task.Run(async () =>
             {
@@ -94,10 +94,11 @@ namespace CCVProyecto2P2.ViewsModels
 
                     ProfesorDto.Id = tbProfesor.Id;
 
-                    mensaje = new Cuerpo
+                    mensaje = new CuerpoP
                     {
-                        EsCrear = true,
-                        ProfesorDto = ProfesorDto
+                        EsCrear =true,
+                        ProfesorDto= ProfesorDto,
+                        
                     };
                 }
                 else
@@ -115,7 +116,7 @@ namespace CCVProyecto2P2.ViewsModels
 
                         await _dbContext.SaveChangesAsync();
 
-                        mensaje = new Cuerpo
+                        mensaje = new CuerpoP
                         {
                             EsCrear = false,
                             ProfesorDto = ProfesorDto
@@ -126,7 +127,7 @@ namespace CCVProyecto2P2.ViewsModels
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     LoadingProfesor = false;
-                    WeakReferenceMessenger.Default.Send(new Mensajeria(mensaje));
+                    WeakReferenceMessenger.Default.Send(new MensajeriaP(mensaje));
                     Shell.Current.Navigation.PopAsync();
                 });
             });
