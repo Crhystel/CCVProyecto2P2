@@ -3,29 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CCVProyecto2P2.Views.SoporteView"
              Background="#e6e2dc">
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
-            <Label Text="Nuestras redes:"
-               FontSize="18"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               Margin="0,0,0,20" 
-               TextColor ="Black"
-               FontFamily="TheStudentsTeacherFont"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
+        <!-- Título -->
+        <Label Text="Contáctanos"
+           FontSize="22"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           Margin="0,0,0,20"
+           TextColor="Black"
+           FontFamily="TheStudentsTeacherFont" />
 
-                <Image Source="whatsapp.png" WidthRequest="50" HeightRequest="50">
+        <StackLayout Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                <Image Source="whatsapp.png" WidthRequest="70" HeightRequest="70">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnWhatsAppTapped" />
                     </Image.GestureRecognizers>
                 </Image>
-
-
-                <Image Source="instagram.png" WidthRequest="50" HeightRequest="50">
+                <Label Text="WhatsApp"
+                   VerticalOptions="Center"
+                   FontSize="16"
+                   TextColor="Black" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                <Image Source="instagram.png" WidthRequest="70" HeightRequest="70">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnInstagramTapped" />
                     </Image.GestureRecognizers>
                 </Image>
-
+                <Label Text="Instagram"
+                   VerticalOptions="Center"
+                   FontSize="16"
+                   TextColor="Black" />
             </StackLayout>
         </StackLayout>
+        <Label Text="¡Síguenos para más información!"
+           FontSize="14"
+           HorizontalOptions="Center"
+           Margin="0,20,0,0"
+           TextColor="Gray" />
+    </StackLayout>
+
 </ContentPage>
